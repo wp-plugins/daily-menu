@@ -1,0 +1,285 @@
+# Copyright (C) 2014 Daily Menu
+# This file is distributed under the same license as the Daily Menu package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Daily Menu 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/daily-menu\n"
+"POT-Creation-Date: 2014-11-09 12:43:50+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Laurent Morretton <laurent.morretton@gmail.com>\n"
+"Language-Team: FR <laurent.morretton@gmail.com>\n"
+
+#: controllers/DishTableControlFunctions.php:29
+#: controllers/DishTableControlFunctions.php:47
+msgid "Unable to save the dish"
+msgstr "Erreur lors de la sauvegarde du plat"
+
+#: controllers/DishTableControlFunctions.php:64
+msgid "Unable to delete the dish"
+msgstr "Erreur lors de la suppression du plat"
+
+#: controllers/InstallController.php:60 index.php:142
+msgid "Starter"
+msgstr "Entrée"
+
+#: controllers/InstallController.php:61
+msgid "Main course"
+msgstr "Plat principal"
+
+#: controllers/InstallController.php:62 index.php:144
+msgid "Accompaniment"
+msgstr "Accompagnement"
+
+#: controllers/InstallController.php:63 index.php:145
+msgid "Dairy"
+msgstr "Laitage"
+
+#: controllers/InstallController.php:64 index.php:146
+msgid "Dessert"
+msgstr "Dessert"
+
+#: controllers/InstallController.php:71
+msgid "Fruit"
+msgstr "Fruit"
+
+#: controllers/InstallController.php:72
+msgid "Cake"
+msgstr "Gâteau"
+
+#: controllers/InstallController.php:73
+msgid "Icecream"
+msgstr "Glace"
+
+#: controllers/InstallController.php:75
+msgid "Cheese"
+msgstr "Fromage"
+
+#: controllers/InstallController.php:76
+msgid "Yaourt"
+msgstr "Yaourt"
+
+#: controllers/InstallController.php:78
+msgid "Salad"
+msgstr "Salade"
+
+#: controllers/InstallController.php:79
+msgid "Pie"
+msgstr "Tarte"
+
+#: controllers/InstallController.php:80
+msgid "Terrine"
+msgstr "Terrine"
+
+#: controllers/InstallController.php:82
+msgid "Meat"
+msgstr "Viande"
+
+#: controllers/InstallController.php:83
+msgid "Fish"
+msgstr "Poisson"
+
+#: controllers/InstallController.php:84
+msgid "Pastry"
+msgstr ""
+
+#: controllers/InstallController.php:86
+msgid "Vegetables"
+msgstr "Légumes"
+
+#: controllers/InstallController.php:87
+msgid "Starchy"
+msgstr "Féculent"
+
+#: controllers/InstallController.php:88
+msgid "Gratin"
+msgstr "Gratin"
+
+#: controllers/ListDishes.php:158
+msgid "No dish"
+msgstr "Aucun plat"
+
+#: controllers/ListMenus.php:187
+msgid "No menu this week !"
+msgstr "Aucun menu cette semaine !"
+
+#: controllers/ListMenus.php:194
+msgid "Day"
+msgstr "Jour"
+
+#: controllers/MenuTableControlFunctions.php:26
+#: controllers/MenuTableControlFunctions.php:55
+msgid "Unable to save the menu"
+msgstr "Erreur lors de la sauvegarde du menu"
+
+#: controllers/MenuTableControlFunctions.php:49
+msgid "Unable to replace the date"
+msgstr "Erreur lors de la modification de la date"
+
+#: controllers/MenuTableControlFunctions.php:72
+msgid "Unable to delete the menu"
+msgstr "Erreur lors de la suppression du menu"
+
+#: index.php:63 index.php:71 index.php:79
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Permission refusée."
+
+#: index.php:88
+msgid "Daily menu"
+msgstr "Menu du jour"
+
+#: index.php:89
+msgid "Dishes"
+msgstr "Plats"
+
+#: index.php:90
+msgid "Menus"
+msgstr "Menus"
+
+#: index.php:128
+msgid "Dishes list"
+msgstr "Liste des plats"
+
+#: index.php:129
+msgid "Name"
+msgstr "Nom"
+
+#: index.php:130
+msgid "Composition"
+msgstr "composition"
+
+#: index.php:131
+msgid "Type"
+msgstr "Type"
+
+#: index.php:132
+msgid "Subtype"
+msgstr "Sous-type"
+
+#: index.php:133
+msgid "Picture"
+msgstr "Image"
+
+#: index.php:139
+msgid "Menus list"
+msgstr "Liste des menus"
+
+#: index.php:140
+msgid "yy-mm-dd"
+msgstr "yy-mm-dd"
+
+#: index.php:141
+msgid "Date"
+msgstr "Date"
+
+#: index.php:143
+msgid "Main Course"
+msgstr "Plat principal"
+
+#: models/JSONError.php:30
+msgid "A error occurs"
+msgstr "Une erreur est survenue"
+
+#: view/ManageSettings.php:2
+msgid "Settings"
+msgstr "Réglages"
+
+#: view/ManageSettings.php:3
+msgid "General options"
+msgstr "Options générales"
+
+#: view/ManageSettings.php:4
+msgid "No options yet."
+msgstr "Aucune option pour l'instant."
+
+#: view/ManageSettings.php:5
+msgid "Instructions for use"
+msgstr "Mode d'emploi"
+
+#: view/ManageSettings.php:7
+msgid ""
+"Create several dishes that you will use later to compose your daily menu in "
+"the "
+msgstr "Créez plusieurs plat, que vous réutiliserez ensuite pour composer des menus, depuis le menu "
+
+#: view/ManageSettings.php:8
+msgid " left menu. "
+msgstr " situé à gauche. "
+
+#: view/ManageSettings.php:9
+msgid "Once this step is done, create day-to-day menus via "
+msgstr "Une fois cette étape achevée, créez des menus quotidiens via "
+
+#: view/ManageSettings.php:10
+msgid ""
+"Insert the following shortcode to dynamically show the menus of the week : "
+"[dm_menu period=week]."
+msgstr ""
+"Ajoutez le short code [dm_menu period=week] pour afficher dynamiquement le menu dans vos pages"
+
+#: view/ManageSettings.php:12
+msgid "Here are the coming next functionalities:"
+msgstr "Voici les prochaines fonctionnalitées sur lesquelles je travaille :"
+
+#: view/ManageSettings.php:14
+msgid "a widget to show today's menu"
+msgstr "un widget pour afficher le menu du jour"
+
+#: view/ManageSettings.php:15
+msgid ""
+"a comprehensive page of general options to handle subtypes, css styles, "
+"language, etc."
+msgstr ""
+"une page complète permettant de gérer les options générales commes les sous-types, les feuilles CSS, la langue d'affichage, etc."
+
+#: view/ManageSettings.php:16
+msgid "more options to the dm_menu shortcode"
+msgstr "plus d'options sur le shortcode dm_menu"
+
+#: view/ManageSettings.php:17
+msgid "handling of multi-menu per day"
+msgstr "la gestion de plusieurs menus par jour"
+
+#: view/ManageSettings.php:20
+msgid "This plugin uses jTable (http://www.jtable.org/)."
+msgstr "Ce plugin utilise jTable (http://www.jtable.org/)."
+
+#days
+msgid "Monday"
+msgstr "Lundi"
+
+msgid "Tuesday"
+msgstr "Mardi"
+
+msgid "Wednesday"
+msgstr "Mercredi"
+
+msgid "Thursday"
+msgstr "Jeudi"
+
+msgid "Friday"
+msgstr "Vendredi"
+
+msgid "Saturday"
+msgstr "Samedi"
+
+msgid "Sunday"
+msgstr "Dimanche"
+
+#. Plugin Name of the plugin/theme
+msgid "Daily Menu"
+msgstr "Daily Menu"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/daily-menu/"
+msgstr "https://wordpress.org/plugins/daily-menu/"
+
+#. Description of the plugin/theme
+msgid "Daily menu provides facilities for canteen management."
+msgstr "Daily Menu permet d'afficher et gérer des menus de cantine."
+
+#. Author of the plugin/theme
+msgid "L. Morretton"
+msgstr ""
