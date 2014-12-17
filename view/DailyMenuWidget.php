@@ -24,8 +24,23 @@ class DailyMenuWidget extends WP_Widget {
 	 * @param array $instance Saved values from database.
 	 */
 	public function widget( $args, $instance ) {
-		$menuArray = ListMenus::getWeekMenus();
-		echo __( 'Hello, World!', 'text_domain' );
+
+		$nextMenu = ListMenus::getNextMenu();
+
+		$day = new DateTime($nextMenu->getDate());
+		$html .= "<t1>".__($day->format("l"),DM_DOMAIN_NAME)."</t1>";
+		
+		$html .= "<dl>";
+		
+		// dish lines
+		foreach ($types as $type => $typename) {
+			$html .= "<dt>".$typename."</dt>";
+			$html .= "<dd>".$nextMenu->getDish($type)->getName()."</dd>";
+		}
+		
+		$html .= "</dl>";
+		
+		echo $html;
 
 	}
 
