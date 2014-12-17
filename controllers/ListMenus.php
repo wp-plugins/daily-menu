@@ -162,15 +162,7 @@ abstract class ListMenus {
 	public static function getWeekMenus() {
 		$menus = ListMenus::getWeekMenusTable();
 		foreach ($menus as $menu) {
-			$objectMenu = new Menu();
-			$objectMenu->setDate($menu->date);
-			$objectMenu->setStarter(new Dish($menu->id_starter));
-			$objectMenu->setMainCourse(new Dish($menu->id_maincourse));
-			$objectMenu->setAccompaniment(new Dish($menu->id_accompaniment));
-			$objectMenu->setDairy(new Dish($menu->id_dairy));
-			$objectMenu->setDessert(new Dish($menu->id_dessert));
-			$objectMenu->load();
-			$objectMenus [] = $objectMenu;
+			$objectMenus [] = loadMenuFromResult($menu);
 		}
 		return $objectMenus;
 	}
@@ -209,6 +201,72 @@ abstract class ListMenus {
 		}
 		$html .= "</table>";
 		return $html;
+	}
+	
+	/**
+	 * Returns the coming next menu, assuming that the cut-off is at 16 PM
+	 * @return array
+	 */
+	public static function getNextMenuRow() {
+		global $wpdb;
+	
+		$result	= $wpdb->get_row(
+				"SELECT top 1 menu.date as date, ".
+				"	max(starter.id_dish) as id_starter, ".
+				"	max(maincourse.id_dish) as id_maincourse, ".
+				"	max(accompaniment.id_dish) as id_accompaniment, ".
+				"	max(dairy.id_dish) as id_dairy, ".
+				"	max(dessert.id_dish) as id_dessert ".
+				"FROM ".$wpdb->prefix . Menu::getTableSuffix()." menu ".
+				"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." starter ".
+				"	on menu.id_dish = starter.id_dish and starter.type='".Dish::STARTER_CODE."' ".
+				"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." maincourse ".
+				"	on menu.id_dish = maincourse.id_dish and maincourse.type='".Dish::MAIN_COURSE_CODE."' ".
+				"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." accompaniment ".
+				"	on menu.id_dish = accompaniment.id_dish and accompaniment.type='".Dish::ACCOMPANIMENT_CODE."' ".
+				"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." dairy ".
+				"	on menu.id_dish = dairy.id_dish and dairy.type='".Dish::DAIRY_CODE."' ".
+				"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." dessert ".
+				"	on menu.id_dish = dessert.id_dish and dessert.type='".Dish::DESSERT_CODE."' ".
+				"where (menu.date >= CURRENT_DATE ".
+				"   		and '16:00:00' >= CURRENT_TIME) ".
+				"   or (menu.date > CURRENT_DATE ".
+				"   		and '16:00:00' < CURRENT_TIME) ".
+				"group by menu.date order by menu.date ASC",
+		ARRAY_A);
+	
+		return $result;
+	}
+	
+	/**
+	 * Returns the comming next Menu, assuming that the cut-off is at 16 PM, or false if the is no menu
+	 * @return Menu
+	 */
+	public static function getNextMenu() {
+		$menu = ListMenus::getNextMenuRow();
+		if (isset($menu)) {
+			return loadMenuFromResult($menu);
+		} else {
+			return false;
+		}
+	}	
+	
+	/**
+	 * 1. Sets the ID of each dish of the table result
+	 * 2. Load each dish from DB to gets the name, composition, etc.
+	 * @param array $menu
+	 * @return Menu
+	 */
+	private static function loadMenuFromResult(Array $menu) {
+		$objectMenu = new Menu();
+		$objectMenu->setDate($menu->date);
+		$objectMenu->setStarter(new Dish($menu->id_starter));
+		$objectMenu->setMainCourse(new Dish($menu->id_maincourse));
+		$objectMenu->setAccompaniment(new Dish($menu->id_accompaniment));
+		$objectMenu->setDairy(new Dish($menu->id_dairy));
+		$objectMenu->setDessert(new Dish($menu->id_dessert));
+		$objectMenu->load();
+		return $objectMenu;
 	}
 	
 }
