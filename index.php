@@ -41,6 +41,8 @@ require_once( DM_PLUGIN_DIR . '/controllers/ListMenus.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/MenuTableControlFunctions.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/DishTableControlFunctions.php' );
 
+require_once( DM_PLUGIN_DIR . '/view/DailyMenuWidget.php' );
+
 // Plugin managment functions (installation, activation, etc.)
 
 function install_dm_plugin(){
@@ -148,6 +150,10 @@ function addDMScripts() {
 	
 }
 
+function addDMWidget(){
+	register_widget( 'DailyMenuWidget' );
+}
+
 // Ajax functions
 // All ajax functions used by jTable are stored into controllers *TableControlFunctions.php
 
@@ -171,6 +177,7 @@ register_uninstall_hook( __FILE__, 'uninstall_dm_plugin' );
 add_action( 'admin_menu', 'addDailyMenuWPMenu' );
 add_action( 'admin_enqueue_scripts', 'addDMStyles' );
 add_action( 'admin_enqueue_scripts', 'addDMScripts' );
+add_action( 'widgets_init', 'addDMWidget');
 
 add_action( 'wp_ajax_list_dishes', 'listDishesCallback' );
 add_action( 'wp_ajax_create_dish', 'createDishCallback' );
