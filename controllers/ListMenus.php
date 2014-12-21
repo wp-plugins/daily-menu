@@ -162,7 +162,7 @@ abstract class ListMenus {
 	public static function getWeekMenus() {
 		$menus = ListMenus::getWeekMenusTable();
 		foreach ($menus as $menu) {
-			$objectMenus [] = loadMenuFromResult($menu);
+			$objectMenus [] = self::loadMenuFromResult($menu);
 		}
 		return $objectMenus;
 	}
@@ -204,14 +204,14 @@ abstract class ListMenus {
 	}
 	
 	/**
-	 * Returns the coming next menu, assuming that the cut-off is at 16 PM
+	 * Returns the coming next menu, assuming that the cut-off is at 4 PM
 	 * @return array
 	 */
 	public static function getNextMenuRow() {
 		global $wpdb;
 	
 		$result	= $wpdb->get_row(
-				"SELECT top 1 menu.date as date, ".
+				"SELECT menu.date as date, ".
 				"	max(starter.id_dish) as id_starter, ".
 				"	max(maincourse.id_dish) as id_maincourse, ".
 				"	max(accompaniment.id_dish) as id_accompaniment, ".
@@ -228,12 +228,12 @@ abstract class ListMenus {
 				"	on menu.id_dish = dairy.id_dish and dairy.type='".Dish::DAIRY_CODE."' ".
 				"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." dessert ".
 				"	on menu.id_dish = dessert.id_dish and dessert.type='".Dish::DESSERT_CODE."' ".
-				"where (menu.date >= CURRENT_DATE ".
-				"   		and '16:00:00' >= CURRENT_TIME) ".
-				"   or (menu.date > CURRENT_DATE ".
-				"   		and '16:00:00' < CURRENT_TIME) ".
-				"group by menu.date order by menu.date ASC",
-		ARRAY_A);
+				"where (DATEDIFF(menu.date,CURRENT_DATE) >= 0 ".
+				"   		and SECOND(TIMEDIFF('16:00:00',CURRENT_TIME)) >= 0) ".
+				"   or (DATEDIFF(menu.date,CURRENT_DATE) > 0 ".
+				"   		and SECOND(TIMEDIFF('16:00:00',CURRENT_TIME)) <  0) ".
+				"group by menu.date order by menu.date ASC ".
+				"limit 1");
 	
 		return $result;
 	}
@@ -245,7 +245,7 @@ abstract class ListMenus {
 	public static function getNextMenu() {
 		$menu = ListMenus::getNextMenuRow();
 		if (isset($menu)) {
-			return loadMenuFromResult($menu);
+			return self::loadMenuFromResult($menu);
 		} else {
 			return false;
 		}
@@ -257,7 +257,7 @@ abstract class ListMenus {
 	 * @param array $menu
 	 * @return Menu
 	 */
-	private static function loadMenuFromResult(Array $menu) {
+	private static function loadMenuFromResult($menu) {
 		$objectMenu = new Menu();
 		$objectMenu->setDate($menu->date);
 		$objectMenu->setStarter(new Dish($menu->id_starter));
