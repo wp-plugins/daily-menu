@@ -26,9 +26,21 @@ class DailyMenuWidget extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		$nextMenu = ListMenus::getNextMenu();
+		$types = ListTypes::getAllTypesTable();
 
+		if (!$nextMenu) {
+			return ;
+		}
+		
+		$html .= "<aside id=\"daily-menu\" class=\"widget\">";
+		
 		$day = new DateTime($nextMenu->getDate());
-		$html .= "<t1>".__($day->format("l"),DM_DOMAIN_NAME)."</t1>";
+		$html .= "<h3 class=\"widget-title\">";
+		$html .= __("Menu of ",DM_DOMAIN_NAME);
+		$html .= __($day->format("l"),DM_DOMAIN_NAME)." "; // day in letters
+		$html .= $day->format("j")." "; // Day of the month 
+		$html .= __($day->format("F"),DM_DOMAIN_NAME); // month
+		$html .= "</h3>";
 		
 		$html .= "<dl>";
 		
@@ -39,6 +51,8 @@ class DailyMenuWidget extends WP_Widget {
 		}
 		
 		$html .= "</dl>";
+		
+		$html .= "</aside>";
 		
 		echo $html;
 
