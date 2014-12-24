@@ -66,7 +66,16 @@ class DailyMenuWidget extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
-
+		echo "<p>";
+		echo "<label for=\"".$this->get_field_id( 'dm_widget_page_link' )."\" name=\"></label>";
+		echo "<input class=\"widefat\" id=\""
+				.$this->get_field_id( 'dm_widget_page_link' )
+				."\" name=\""
+				.$this->get_field_name( 'dm_widget_page_link' )
+				."\" type=\"text\" value=\""
+				.$instance['dm_widget_page_link'].
+				"\">";
+		echo "</p>";
 	}
 
 	/**
@@ -80,7 +89,10 @@ class DailyMenuWidget extends WP_Widget {
 	 * @return array Updated safe values to be saved.
 	 */
 	public function update( $new_instance, $old_instance ) {
-
+		$instance = array();
+		$instance['dm_widget_page_link'] = ( ! empty( $new_instance['dm_widget_page_link'] ) ) ? strip_tags( $new_instance['dm_widget_page_link'] ) :' ';
+		
+		return $instance;
 	}
 
 }
