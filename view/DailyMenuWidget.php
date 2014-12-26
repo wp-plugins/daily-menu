@@ -1,6 +1,7 @@
 <?php
 /**
- * Adds Foo_Widget widget.
+ * Daily-Menu Widget goals is to provide the menu of the current day, if the current time
+ * (of the DB server) is before 16h (4PM) or the next menu if after.
  */
 class DailyMenuWidget extends WP_Widget {
 
@@ -32,13 +33,22 @@ class DailyMenuWidget extends WP_Widget {
 			return ;
 		}
 		
-		$html .= "<aside id=\"daily-menu\" class=\"widget\">";
+		$html .= $args['before_widget'];
 		
 		$day = new DateTime($nextMenu->getDate());
-		$html .= "<h3 class=\"widget-title\">";
-		$html .= __("Menu of ",DM_DOMAIN_NAME);
-		$html .= date_i18n(__("l j F",DM_DOMAIN_NAME));
-		$html .= "</h3>";
+
+		$html .= $args['before_title'];
+		
+		/* translators:
+		 * %1$s is the name of the day,
+		 * %2$d is the number of the day within month
+		 * %3$s is the name of the month*/
+		$html .= printf(__("Menu of %1$s, %2$d of %3$s",DM_DOMAIN_NAME),
+					date_i18n("l",$day->getTimestamp()),
+					date_i18n("j",$day->getTimestamp()),
+					date_i18n("F",$day->getTimestamp()));
+		
+		$html .= $args['after_title'];
 		
 		$html .= "<dl>";
 		
@@ -50,7 +60,17 @@ class DailyMenuWidget extends WP_Widget {
 		
 		$html .= "</dl>";
 		
-		$html .= "</aside>";
+		if (isset($instance['dm_widget_page_link'])) {
+			$html .= "<ul>";
+			$html .= "<li>";
+			$html .= "<a href=\"".$instance['dm_widget_page_link']."\">";
+			$html .= __("Menus of the week",DM_DOMAIN_NAME);
+			$html .= "</a>";
+			$html .= "</li>";
+			$html .= "</ul>";
+		}
+
+		$html .= $args['after_widget'];
 		
 		echo $html;
 
@@ -64,16 +84,19 @@ class DailyMenuWidget extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
-		echo "<p>";
-		echo "<label for=\"".$this->get_field_id( 'dm_widget_page_link' )."\" name=\"></label>";
-		echo "<input class=\"widefat\" id=\""
+		$html .= "<p>";
+		$html .= "<label for=\"".$this->get_field_id( 'dm_widget_page_link' )."\">";
+		$html .= __("Link to a page with all menus of the week :",DM_DOMAIN_NAME);
+		$html .= "</label>";
+		$html .= "<input class=\"widefat\" id=\""
 				.$this->get_field_id( 'dm_widget_page_link' )
 				."\" name=\""
 				.$this->get_field_name( 'dm_widget_page_link' )
 				."\" type=\"text\" value=\""
 				.$instance['dm_widget_page_link'].
-				"\">";
-		echo "</p>";
+				"\"	/>";
+		$html .=  "</p>";
+		echo $html;
 	}
 
 	/**
