@@ -122,7 +122,11 @@ function addDMScripts() {
 			'jquery-ui-selectable', 'jquery-ui-slider', 'jquery-ui-sortable', 'jquery-ui-spinner',
 			'jquery-ui-tabs', 'jquery-ui-tooltip' ), '2.4.0' );
 
-	wp_register_script( "jtable.localization", plugins_url("js/jtable/localization/jquery.jtable.".substr($locale,0,2).".js", __FILE__ ),array( 'jtable'));
+	// Attempt to load translation
+	$jtableLibrary = plugins_url("js/jtable/localization/jquery.jtable.".substr(get_locale(),0,2).".js", __FILE__ );
+	if (!is_404($jtableLibrary)) {
+		wp_register_script( "jtable.localization", $jtableLibrary,array( 'jtable'));
+	}	
 	
 	wp_register_script( "draw.dish.table", plugins_url("js/draw.dish.table.js", __FILE__ ), array("jtable"));
 	wp_localize_script( 'draw.dish.table', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
