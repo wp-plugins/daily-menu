@@ -186,7 +186,7 @@ abstract class ListMenus {
 		$html .= "<th>".__("Day",DM_DOMAIN_NAME)."</th>";
 		foreach (array_reverse($menus) as $menu) {
 			$day = new DateTime($menu->getDate());
-			$html .= "<th>".__($day->format("l"),DM_DOMAIN_NAME)."</th>";
+			$html .= "<th>".date_i18n("l",$day->getTimestamp())."</th>";
 		}
 		$html .= "</tr>";
 		
