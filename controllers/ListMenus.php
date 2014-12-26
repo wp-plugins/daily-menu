@@ -228,10 +228,9 @@ abstract class ListMenus {
 				"	on menu.id_dish = dairy.id_dish and dairy.type='".Dish::DAIRY_CODE."' ".
 				"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." dessert ".
 				"	on menu.id_dish = dessert.id_dish and dessert.type='".Dish::DESSERT_CODE."' ".
-				"where (DATEDIFF(menu.date,CURRENT_DATE) >= 0 ".
-				"   		and SECOND(TIMEDIFF('16:00:00',CURRENT_TIME)) >= 0) ".
-				"   or (DATEDIFF(menu.date,CURRENT_DATE) > 0 ".
-				"   		and SECOND(TIMEDIFF('16:00:00',CURRENT_TIME)) <  0) ".
+				"where ((DATEDIFF(menu.date,CURRENT_DATE) = 0) ".
+				"   		and (TIME_TO_SEC(TIMEDIFF(160000,CURRENT_TIME)) >= 0)) ".
+				"   or (DATEDIFF(menu.date,CURRENT_DATE) > 0) ".
 				"group by menu.date order by menu.date ASC ".
 				"limit 1");
 	
