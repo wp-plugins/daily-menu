@@ -101,8 +101,8 @@ function addDMStyles() {
 	//wp_enqueue_style("jtable.basic",plugins_url("js/jtable/themes/basic/jtable_basic.css", __FILE__ ));
 	wp_register_style("jtable.blue",plugins_url("js/jtable/themes/metro/blue/jtable.min.css", __FILE__ ));
 	//wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/jqueryui/jtable_jqueryui.min.css", __FILE__ ));
-	//wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/redmond/jquery-ui-1.8.16.custom.css", __FILE__ ));
-	wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/jqueryui-metroblue/jquery-ui.css", __FILE__ ));
+	wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/jqueryui-redmond/jquery-ui.css", __FILE__ ));
+	//wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/jqueryui-metroblue/jquery-ui.css", __FILE__ ));
 	
 }
 
