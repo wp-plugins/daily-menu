@@ -37,9 +37,7 @@ class DailyMenuWidget extends WP_Widget {
 		$day = new DateTime($nextMenu->getDate());
 		$html .= "<h3 class=\"widget-title\">";
 		$html .= __("Menu of ",DM_DOMAIN_NAME);
-		$html .= __($day->format("l"),DM_DOMAIN_NAME)." "; // day in letters
-		$html .= $day->format("j")." "; // Day of the month 
-		$html .= __($day->format("F"),DM_DOMAIN_NAME); // month
+		$html .= date_i18n(__("l j F",DM_DOMAIN_NAME));
 		$html .= "</h3>";
 		
 		$html .= "<dl>";
