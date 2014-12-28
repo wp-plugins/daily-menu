@@ -51,10 +51,10 @@ function install_dm_plugin(){
 }
 
 function desactivate_dm_plugin(){
-	InstallController::delete();
 }
 
 function uninstall_dm_plugin(){
+	InstallController::delete();
 }
 
 
