@@ -14,5 +14,6 @@ wp_enqueue_script( 'draw.menu.table' );
 wp_enqueue_style( 'jtable.blue' );	
 wp_enqueue_style( 'jtable.jquery-ui' );	
 
-
-echo '<div id="MenusTableContainer" style="width: 600px;"></div>';
+echo '<p>';
+echo '<div id="MenusTableContainer" style="width:90%"></div>';
+echo '</p>';

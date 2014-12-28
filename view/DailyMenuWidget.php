@@ -33,24 +33,23 @@ class DailyMenuWidget extends WP_Widget {
 			return ;
 		}
 		
-		$html .= $args['before_widget'];
+		$html = $args['before_widget'];
 		
-		$day = new DateTime($nextMenu->getDate());
-
 		$html .= $args['before_title'];
 		
+		$day = new DateTime($nextMenu->getDate());
 		/* translators:
 		 * %1$s is the name of the day,
 		 * %2$d is the number of the day within month
 		 * %3$s is the name of the month*/
-		$html .= printf(__("Menu of %1$s, %2$d of %3$s",DM_DOMAIN_NAME),
+		$html .= sprintf(__('Menu of %1$s, %2$d of %3$s',DM_DOMAIN_NAME),
 					date_i18n("l",$day->getTimestamp()),
 					date_i18n("j",$day->getTimestamp()),
 					date_i18n("F",$day->getTimestamp()));
 		
 		$html .= $args['after_title'];
 		
-		$html .= "<dl>";
+		$html .= "<dl align=\"center\">";
 		
 		// dish lines
 		foreach ($types as $type => $typename) {
