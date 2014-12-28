@@ -3,7 +3,7 @@
  * Plugin Name: Daily Menu
 * Plugin URI: https://wordpress.org/plugins/daily-menu/
 * Description: Daily menu provides facilities for canteen management.
-* Version: 0.1
+* Version: 0.2
 * Author: L. Morretton
 * License: GPL2
 */
