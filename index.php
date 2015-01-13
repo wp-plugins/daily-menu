@@ -106,6 +106,10 @@ function addDMStyles() {
 	
 }
 
+function addDMShortcodeStyles() {
+	wp_register_style("daily-menu.week",plugins_url("css/menu_week.css", __FILE__ ));
+}
+
 function addDMScripts() {
 //	wp_register_script( "jtable", plugins_url("js/jtable/jquery.jtable.js", __FILE__ ),
 //			array("jquery-ui-core",
@@ -136,7 +140,8 @@ function addDMScripts() {
 		'column_composition_title' => __("Composition",DM_DOMAIN_NAME),
 		'column_type_title' => __("Type",DM_DOMAIN_NAME),
 		'column_sstype_title' => __("Subtype",DM_DOMAIN_NAME),
-		'column_picture_title' => __("Picture",DM_DOMAIN_NAME)
+		'column_picture_title' => __("Picture",DM_DOMAIN_NAME),
+		'column_picture_text' => __("Select a picture",DM_DOMAIN_NAME)
 	));
 	
 	wp_register_script( "draw.menu.table", plugins_url("js/draw.menu.table.js", __FILE__ ), array("jtable"));
@@ -164,6 +169,7 @@ function addDMWidget(){
 function listMenuShortcode( $atts ) {
 	switch ($atts["period"]) {
 		case "week":
+			wp_enqueue_style( 'daily-menu.week' );
 			print ListMenus::getWeekMenusHTML();
 			break;
 		default : print ListMenus::getWeekMenusHTML();
@@ -181,6 +187,7 @@ register_uninstall_hook( __FILE__, 'uninstall_dm_plugin' );
 add_action( 'admin_menu', 'addDailyMenuWPMenu' );
 add_action( 'admin_enqueue_scripts', 'addDMStyles' );
 add_action( 'admin_enqueue_scripts', 'addDMScripts' );
+add_action( 'wp_enqueue_scripts', 'addDMShortcodeStyles' );
 add_action( 'widgets_init', 'addDMWidget');
 
 add_action( 'wp_ajax_list_dishes', 'listDishesCallback' );

@@ -11,13 +11,16 @@ wp_enqueue_script( 'jtable' ); // loads jquery and jtable as well as it has depe
 wp_enqueue_script( 'jtable.localization' ); // loads languages for Jtable
 wp_enqueue_script( 'draw.dish.table' );
 //wp_enqueue_style( 'jtable.basic' );	
+// Scripts for picking up a picture for menus
+wp_enqueue_media();
+//wp_enqueue_script( 'custom-header' );
+
 wp_enqueue_style( 'jtable.blue' );	
 wp_enqueue_style( 'jtable.jquery-ui' );	
 
 echo '<p>';
 echo '<div id="DishesTableContainer" style="width:90%"></div>';
 echo '</p>';
-
 
 
 

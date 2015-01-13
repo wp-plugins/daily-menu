@@ -1,7 +1,6 @@
 /**
  * Draw the table of dishes
  */
-
 (function($) {
 
 		    //Prepare jTable
@@ -54,10 +53,15 @@
 					picture: {
 						title: objectL10n.column_picture_title,
 						sorting: false,
-						//width: '40%'
-						//type: 'date',
-						create: false,
-						edit: false,
+					    input: function (data) {
+					    	html = '<input type="text" name="picture" value="' + data.value + '" />';
+					    	html += '<a href="#" onClick="javascript: selectPicture();">';
+					    	html += objectL10n.column_picture_text;
+					    	html += '</a>';
+					    	return html;
+					    },
+						//create: false,
+						//edit: false,
 						list: false						
 					}
 				}
@@ -67,3 +71,46 @@
 			$('#DishesTableContainer').jtable('load');
 
 	})(jQuery);
+
+function selectPicture() {
+
+	//event.preventDefault();
+
+	var frame = wp.media({
+	    title: "Select Image",
+	    multiple: false,
+	    library: { type: 'image' },
+	    button : { text : 'add image' }
+	});
+	
+	frame.on( 'select', function() {
+	    var selection = frame.state().get('selection');
+	    selection.each(function(attachment) {
+	        console.log(attachment);
+	        // this will return an object with all the attachment-details
+	        jQuery('input#Edit-picture')[0].value = attachment.id;
+	    });
+	});
+	
+	frame.open();
+}
+
+/*jQuery('a#Edit-picture').on('click', function(event){
+
+	event.preventDefault();
+
+	var frame = wp.media({
+	    title: "Select Image",
+	    multiple: false,
+	    library: { type: 'image' },
+	    button : { text : 'add image' }
+	});
+	frame.on( 'select', function() {
+	    var selection = frame.state().get('selection');
+	    selection.each(function(attachment) {
+	        console.log(attachment);
+	        // this will return an object with all the attachment-details
+	    });
+	});
+
+});*/

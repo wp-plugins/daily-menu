@@ -183,19 +183,25 @@ abstract class ListMenus {
 		
 		// header line with the days of the week
 		$html .= "<tr>";
-		$html .= "<th>".__("Day",DM_DOMAIN_NAME)."</th>";
+		$html .= "<th class=\"daily-menu\">".__("Day",DM_DOMAIN_NAME)."</th>";
 		foreach (array_reverse($menus) as $menu) {
 			$day = new DateTime($menu->getDate());
-			$html .= "<th>".date_i18n("l",$day->getTimestamp())."</th>";
+			$html .= "<th class=\"daily-menu daily-menu_day\">".date_i18n("l",$day->getTimestamp())."</th>";
 		}
 		$html .= "</tr>";
 		
 		// dish lines
 		foreach ($types as $type => $typename) {
 			$html .= "<tr>";
-			$html .= "<th>".$typename."</th>";
+			$html .= "<th class=\"daily-menu daily-menu_dish\">".$typename."</th>";
 			foreach (array_reverse($menus) as $menu) {
-				$html .= "<td>".$menu->getDish($type)->getName()."</td>";
+				$background = "";
+				if (!$menu->getDish($type)->getPicture()==null) {
+					$background .= 'style="background:url(\'';
+					$background .= wp_get_attachment_url( $menu->getDish($type)->getPicture());
+					$background .= '\')0px 0px; text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px white, 0 -2px 2px white; "';
+				}
+				$html .= "<td ".$background." class=\"daily-menu daily-menu_dish\">".$menu->getDish($type)->getName()."</td>";
 			}
 			$html .= "</tr>";
 		}
