@@ -100,7 +100,7 @@ class Menu {
 	 * Returns the date of the menu
 	 */
 	function getDate() {
-		return $this->date;
+		return $this->date->format("Y-m-d");
 	}
 	
 	/**
@@ -108,7 +108,8 @@ class Menu {
 	 * @param string $arg A string representing the date in yyyy-mm-dd format
 	 */
 	function setDate($arg) {
-		$this->date = $arg;
+		$newDate = DateTime.createFromFormat("Y-m-d",$arg);
+		$this->date = $newDate;
 	}
 	
 	/**
@@ -173,7 +174,7 @@ class Menu {
 	function getJSON() {
 		$jTableResult = array();
 		$jTableResult['Result'] = "OK";
-		$jTableResult['Record'] = array("date" => $this->date,
+		$jTableResult['Record'] = array("date" => $this->getDate(),
 				"id_starter" => isset($this->starter)?$this->starter->getID():0,
 				"id_maincourse" => isset($this->mainCourse)?$this->mainCourse->getID():0,
 				"id_accompaniment" => isset($this->accompaniment)?$this->accompaniment->getID():0,
@@ -183,7 +184,7 @@ class Menu {
 	}
 	
 	/**
-	 * Sets the starter (Dish objetc)
+	 * Sets the starter (Dish object)
 	 * @param Dish $arg
 	 */
 	function setStarter($arg) {
@@ -191,7 +192,7 @@ class Menu {
 	}
 	
 	/**
-	 * Sets the main course (Dish objetc)
+	 * Sets the main course (Dish object)
 	 * @param Dish $arg
 	 */
 	function setMainCourse($arg) {
@@ -199,7 +200,7 @@ class Menu {
 	}
 	
 	/**
-	 * Sets the accompaniment (Dish objetc)
+	 * Sets the accompaniment (Dish object)
 	 * @param Dish $arg
 	 */
 	function setAccompaniment($arg) {
@@ -207,7 +208,7 @@ class Menu {
 	}
 	
 	/**
-	 * Sets the dessert (Dish objetc)
+	 * Sets the dessert (Dish object)
 	 * @param Dish $arg
 	 */
 	function setDessert($arg) {
@@ -215,7 +216,7 @@ class Menu {
 	}
 	
 	/**
-	 * Sets the dairy (Dish objetc)
+	 * Sets the dairy (Dish object)
 	 * @param Dish $arg
 	 */
 	function setDairy($arg) {
@@ -227,12 +228,12 @@ class Menu {
 	 * @param array $args
 	 */
 	function setFromPOST($args) {
-		$this->date = $args["date"];
-		$this->starter = new Dish($args["id_starter"]);
-		$this->mainCourse = new Dish($args["id_maincourse"]);
-		$this->accompaniment = new Dish($args["id_accompaniment"]);
-		$this->dairy = new Dish($args["id_dairy"]);
-		$this->dessert = new Dish($args["id_dessert"]);
+		$this->setDate($args["date"]);
+		$this->starter = new Dish(intval($args["id_starter"]));
+		$this->mainCourse = new Dish(intval($args["id_maincourse"]));
+		$this->accompaniment = new Dish(intval($args["id_accompaniment"]));
+		$this->dairy = new Dish(intval($args["id_dairy"]));
+		$this->dessert = new Dish(intval($args["id_dessert"]));
 	}
 
 }

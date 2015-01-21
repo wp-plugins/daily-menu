@@ -90,14 +90,14 @@ class Dish {
 	/**
 	 * Adds the dish to a new or existing menu in database. A menu is determined by its date
 	 * @see Menu
-	 * @param date $date The date of the menu
+	 * @param date $date The date object of the menu
 	 * @return boolean|Ambigous <number, false> The number of rows added/uptated to DB, or false if it fails
 	 */
 	function saveInMenu($date) {
 		global $wpdb;
 		if (!isset($this->id_dish)) return false;
 		if ($this->id_dish==0) return true;
-		$newData = array ("DATE" => $date,
+		$newData = array ("DATE" => $date.format("Y-m-d"),
 				"ID_DISH" => $this->id_dish);
 		return $wpdb->replace($wpdb->prefix . Menu::getTableSuffix(), $newData);
 	}
@@ -179,42 +179,47 @@ class Dish {
 	 * @see Type
 	 * @param string $arg
 	 */
-	function setType($arg){ $this->type = $arg; }
+	function setType($arg){ $this->type = sanitize_text_field($arg); }
 	
 	/**
 	 * Sets the subtype of the dish
 	 * @param string $arg
 	 */
-	function setSstype($arg){ $this->sstype = $arg; }
+	function setSstype($arg){ $this->sstype = sanitize_text_field($arg); }
 	
 	/**
 	 * Sets the name of the dish
 	 * @param string $arg
 	 */
-	function setName($arg){ $this->name = $arg; }
+	function setName($arg){ $this->name = sanitize_text_field($arg); }
 	
 	/**
 	 * Sets the composition of the dish
 	 * @param string $arg
 	 */
-	function setComposition($arg){ $this->composition = $arg; }
+	function setComposition($arg){ $this->composition = sanitize_text_field($arg); }
 	
 	/**
 	 * Sets the ID of a picture representing the dish
 	 * @param number $arg
 	 */
-	function setPicture($arg){ $this->picture = $arg; }
+	function setPicture($arg) {
+		$this->picture = intval($arg);
+		if ( ! $this->picture) {
+			$this->picture = '';
+		}
+	}
 	
 	/**
 	 * Fill all members of the dish from a HTTP request
 	 * @param array $args The post argument
 	 */
 	function setFromPOST($args) {
-		$this->type = $args["type"];
-		$this->sstype = $args["sstype"];
-		$this->name = $args["name"];
-		$this->composition = $args["composition"];
-		$this->picture = $args["picture"];
+		$this->setType($args["type"]);
+		$this->setSstype($args["sstype"]);
+		$this->setName($args["name"]);
+		$this->setComposition($args["composition"]);
+		$this->setPicture($args["picture"]);
 	}
 	
 }
