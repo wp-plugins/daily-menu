@@ -193,7 +193,7 @@ abstract class ListMenus {
 		// dish lines
 		foreach ($types as $type => $typename) {
 			$html .= "<tr>";
-			$html .= "<th class=\"daily-menu daily-menu_dish\">".$typename."</th>";
+			$html .= "<th class=\"daily-menu daily-menu_dish\">".esc_html($typename)."</th>";
 			foreach (array_reverse($menus) as $menu) {
 				$background = "";
 				if (!$menu->getDish($type)->getPicture()==null) {
@@ -201,7 +201,7 @@ abstract class ListMenus {
 					$background .= wp_get_attachment_url( $menu->getDish($type)->getPicture());
 					$background .= '\')0px 0px; text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px white, 0 -2px 2px white; "';
 				}
-				$html .= "<td ".$background." class=\"daily-menu daily-menu_dish\">".$menu->getDish($type)->getName()."</td>";
+				$html .= "<td ".$background." class=\"daily-menu daily-menu_dish\">".esc_html($menu->getDish($type)->getName())."</td>";
 			}
 			$html .= "</tr>";
 		}

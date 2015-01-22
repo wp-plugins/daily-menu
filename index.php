@@ -87,9 +87,9 @@ function showManageMenusWPContent(){
 
 
 function addDailyMenuWPMenu() {
-	add_menu_page( __("Daily menu",DM_DOMAIN_NAME), __("Daily menu",DM_DOMAIN_NAME), 'manage_options', 'ManageDailyMenu', 'showManageDailyMenuWPContent', 'dashicons-list-view');
-	add_submenu_page( 'ManageDailyMenu', __("Dishes",DM_DOMAIN_NAME), __("Dishes",DM_DOMAIN_NAME), 'manage_options', 'ManageDishes', 'showManageDishesWPContent');
-	add_submenu_page( 'ManageDailyMenu', __("Menus",DM_DOMAIN_NAME), __("Menus",DM_DOMAIN_NAME), 'manage_options', 'ManageMenus', 'showManageMenusWPContent');
+	add_menu_page( __("Daily menu",DM_DOMAIN_NAME), __("Daily menu",DM_DOMAIN_NAME), 'publish_posts', 'ManageDailyMenu', 'showManageMenusWPContent', 'dashicons-list-view');
+	add_submenu_page( 'ManageDailyMenu', __("Dishes",DM_DOMAIN_NAME), __("Dishes",DM_DOMAIN_NAME), 'publish_posts', 'ManageDishes', 'showManageDishesWPContent');
+	add_submenu_page( 'ManageDailyMenu', __("Options",DM_DOMAIN_NAME), __("Options",DM_DOMAIN_NAME), 'manage_options', 'DailyMenuOptions', 'showManageDailyMenuWPContent');
 }
 
 

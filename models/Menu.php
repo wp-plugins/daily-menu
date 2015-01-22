@@ -87,7 +87,7 @@ class Menu {
 	function delete() {
 		global $wpdb;
 		if (!isset($this->date)) return false;
-		return $wpdb->delete($this->table_name, array( 'DATE' => $this->date ));
+		return $wpdb->delete($this->table_name, array( 'DATE' => $this->date->format("Y-m-d") ));
 	}
 	
 	/**

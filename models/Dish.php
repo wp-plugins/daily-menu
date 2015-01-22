@@ -97,7 +97,7 @@ class Dish {
 		global $wpdb;
 		if (!isset($this->id_dish)) return false;
 		if ($this->id_dish==0) return true;
-		$newData = array ("DATE" => $date.format("Y-m-d"),
+		$newData = array ("DATE" => $date->format("Y-m-d"),
 				"ID_DISH" => $this->id_dish);
 		return $wpdb->replace($wpdb->prefix . Menu::getTableSuffix(), $newData);
 	}
@@ -105,14 +105,14 @@ class Dish {
 	/**
 	 * Removes the dish to an existing menu in database. A menu is determined by its date
 	 * @see Menu
-	 * @param date $date The date of the menu
+	 * @param date $date The date object of the menu
 	 * @return boolean|Ambigous <number, false> The number of rows deleted in DB, or false if it fails
 	 */
 	function removeFromMenu($date) {
 		global $wpdb;
 		if (!isset($date)) return false;
 		if (!isset($this->id_dish)) return false;
-		return $wpdb->delete($wpdb->prefix . Menu::getTableSuffix(), array( 'DATE' => $date , 'ID_DISH' => $this->id_dish));	
+		return $wpdb->delete($wpdb->prefix . Menu::getTableSuffix(), array( 'DATE' => $date->format("Y-m-d") , 'ID_DISH' => $this->id_dish));	
 	}
 	
 	/**
