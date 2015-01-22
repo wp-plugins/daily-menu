@@ -33,28 +33,28 @@ class DailyMenuWidget extends WP_Widget {
 			return ;
 		}
 		
-		$html = $args['before_widget'];
+		$html = esc_html($args['before_widget']);
 		
-		$html .= $args['before_title'];
+		$html .= esc_html($args['before_title']);
 		
 		$day = new DateTime($nextMenu->getDate());
 		/* translators:
 		 * %1$s is the name of the day,
 		 * %2$d is the number of the day within month
 		 * %3$s is the name of the month*/
-		$html .= sprintf(__('Menu of %1$s, %2$d of %3$s',DM_DOMAIN_NAME),
+		$html .= sprintf(esc_html__('Menu of %1$s, %2$d of %3$s',DM_DOMAIN_NAME),
 					date_i18n("l",$day->getTimestamp()),
 					date_i18n("j",$day->getTimestamp()),
 					date_i18n("F",$day->getTimestamp()));
 		
-		$html .= $args['after_title'];
+		$html .= esc_html($args['after_title']);
 		
 		$html .= "<dl align=\"center\">";
 		
 		// dish lines
 		foreach ($types as $type => $typename) {
-			$html .= "<dt>".$typename."</dt>";
-			$html .= "<dd>".$nextMenu->getDish($type)->getName()."</dd>";
+			$html .= "<dt>".esc_html($typename)."</dt>";
+			$html .= "<dd>".esc_html($nextMenu->getDish($type)->getName())."</dd>";
 		}
 		
 		$html .= "</dl>";
@@ -62,14 +62,14 @@ class DailyMenuWidget extends WP_Widget {
 		if (isset($instance['dm_widget_page_link'])) {
 			$html .= "<ul>";
 			$html .= "<li>";
-			$html .= "<a href=\"".$instance['dm_widget_page_link']."\">";
-			$html .= __("Menus of the week",DM_DOMAIN_NAME);
+			$html .= "<a href=\"".esc_url($instance['dm_widget_page_link'])."\">";
+			$html .= esc_html__("Menus of the week",DM_DOMAIN_NAME);
 			$html .= "</a>";
 			$html .= "</li>";
 			$html .= "</ul>";
 		}
 
-		$html .= $args['after_widget'];
+		$html .= esc_html($args['after_widget']);
 		
 		echo $html;
 
@@ -85,14 +85,14 @@ class DailyMenuWidget extends WP_Widget {
 	public function form( $instance ) {
 		$html .= "<p>";
 		$html .= "<label for=\"".$this->get_field_id( 'dm_widget_page_link' )."\">";
-		$html .= __("Link to a page with all menus of the week :",DM_DOMAIN_NAME);
+		$html .= esc_html__("Link to a page with all menus of the week :",DM_DOMAIN_NAME);
 		$html .= "</label>";
 		$html .= "<input class=\"widefat\" id=\""
-				.$this->get_field_id( 'dm_widget_page_link' )
+				.esc_html($this->get_field_id( 'dm_widget_page_link' ))
 				."\" name=\""
-				.$this->get_field_name( 'dm_widget_page_link' )
+				.esc_html($this->get_field_name( 'dm_widget_page_link' ))
 				."\" type=\"text\" value=\""
-				.$instance['dm_widget_page_link'].
+				.esc_url($instance['dm_widget_page_link']).
 				"\"	/>";
 		$html .=  "</p>";
 		echo $html;

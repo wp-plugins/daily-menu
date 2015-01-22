@@ -110,6 +110,7 @@ class Dish {
 	 */
 	function removeFromMenu($date) {
 		global $wpdb;
+		if (!isset($date)) return false;
 		if (!isset($this->id_dish)) return false;
 		return $wpdb->delete($wpdb->prefix . Menu::getTableSuffix(), array( 'DATE' => $date , 'ID_DISH' => $this->id_dish));	
 	}
