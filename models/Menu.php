@@ -108,7 +108,7 @@ class Menu {
 	 * @param string $arg A string representing the date in yyyy-mm-dd format
 	 */
 	function setDate($arg) {
-		$newDate = DateTime.createFromFormat("Y-m-d",$arg);
+		$newDate = DateTime::createFromFormat("Y-m-d",$arg);
 		$this->date = $newDate;
 	}
 	

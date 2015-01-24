@@ -179,7 +179,7 @@ abstract class ListMenus {
 			return (__("No menu this week !",DM_DOMAIN_NAME));
 		}
 		$types = ListTypes::getAllTypesTable();
-		$html = "<table>";
+		$html = "<table class=\"daily-menu\">";
 		
 		// header line with the days of the week
 		$html .= "<tr>";
