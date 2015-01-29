@@ -69,7 +69,7 @@ function showManageDailyMenuWPContent(){
 }
 
 function showManageDishesWPContent(){
-	if ( !current_user_can( 'manage_options' ) )  {
+	if ( !current_user_can( 'publish_posts' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	} else {
 		include(DM_PLUGIN_DIR.'/view/ManageDishes.php');
@@ -77,7 +77,7 @@ function showManageDishesWPContent(){
 }
 
 function showManageMenusWPContent(){
-	if ( !current_user_can( 'manage_options' ) )  {
+	if ( !current_user_can( 'publish_posts' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	} else {
 		include(DM_PLUGIN_DIR.'/view/ManageMenus.php');
