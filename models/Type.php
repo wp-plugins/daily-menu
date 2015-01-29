@@ -77,6 +77,15 @@ class Type {
 	}
 	
 	/**
+	 * Fill id and text type from a HTTP request
+	 * @param array $args The post argument
+	 */
+	function setFromPOST($args) {
+		$this->setId($args["id_type"]);
+		$this->setText($args["text"]);
+	}
+	
+	/**
 	 * Sets the code of the type
 	 * @param unknown $arg
 	 */
@@ -92,6 +101,33 @@ class Type {
 		$this->text = $arg;
 	}
 	
+	/**
+	 * Saves the type
+	 * TODO : complete stub
+	 */
+	public function save() {
+		return;
+	}
 	
+	
+	/**
+	 * Updates the type
+	 * TODO : complete stub
+	 */
+	public function update() {
+		return;
+	}
+	
+	/**
+	 * Encodes the type of dish into a JSON string
+	 * @return string A JSON representing the type
+	 */
+	function getJSON() {
+		$jTableResult = array();
+		$jTableResult['Result'] = "OK";
+		$jTableResult['Record'] = array("id_type" => $this->id,
+				"text" => $this->text);
+		return json_encode($jTableResult);
+	}
 	
 }
