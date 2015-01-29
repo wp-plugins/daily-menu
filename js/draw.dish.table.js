@@ -86,7 +86,6 @@ function selectPicture() {
 	frame.on( 'select', function() {
 	    var selection = frame.state().get('selection');
 	    selection.each(function(attachment) {
-	        console.log(attachment);
 	        // this will return an object with all the attachment-details
 	        jQuery('input#Edit-picture')[0].value = attachment.id;
 	    });
@@ -95,22 +94,3 @@ function selectPicture() {
 	frame.open();
 }
 
-/*jQuery('a#Edit-picture').on('click', function(event){
-
-	event.preventDefault();
-
-	var frame = wp.media({
-	    title: "Select Image",
-	    multiple: false,
-	    library: { type: 'image' },
-	    button : { text : 'add image' }
-	});
-	frame.on( 'select', function() {
-	    var selection = frame.state().get('selection');
-	    selection.each(function(attachment) {
-	        console.log(attachment);
-	        // this will return an object with all the attachment-details
-	    });
-	});
-
-});*/
