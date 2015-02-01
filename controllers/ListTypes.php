@@ -2,13 +2,22 @@
 require_once( DM_PLUGIN_DIR . '/models/Type.php' );
 class ListTypes {
 
+	/**
+	 * Returns all types of dish, that are stored in wordpress options, as an array
+	 * @return mixed
+	 */
 	public static function getAllTypesTable() {
 		$result	= get_option(Type::getOptionId());
 		
 		return $result;
 	}
 
-	public static function getAllTypesJSON() {
+	/**
+	 * Returns all types of dish, that are stored in wordpress options, as a JSON object
+	 * The JSON object represents a list of options 
+	 * @return string a JSON Object
+	 */
+	public static function getAllTypesOptionsJSON() {
 		$rows = ListTypes::getAllTypesTable();
 		
 		// Array is decomposed into a table of options as described by jTable
@@ -27,5 +36,23 @@ class ListTypes {
 		// Outputs the result
 		return json_encode($jTableResult);
 	}
+	
+	/**
+	 * Returns all types of dish, that are stored in wordpress options, as a JSON object
+	 * The JSON object represents a record set
+	 * @return string a JSON Object
+	 */
+	public static function getAllTypesJSON() {
+		$rows = ListTypes::getAllTypesTable();
+	
+		//Returns result to jTable
+		$jTableResult = array();
+		$jTableResult['Result'] = "OK";
+		$jTableResult['Records'] = $rows;
+	
+		// Outputs the result
+		return json_encode($jTableResult);
+	}
+	
 	
 }
