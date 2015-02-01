@@ -74,8 +74,8 @@ function deleteDishCallback() {
  * It returns (more exactly print) a JSON object with a table of dish types
  * @see Type
  */
-function listTypesCallback() {
-	print ListTypes::getAllTypesJSON();
+function listTypesOptionsCallback() {
+	print ListTypes::getAllTypesOptionsJSON();
 	die();
 }
 
@@ -84,8 +84,8 @@ function listTypesCallback() {
  * It returns (more exactly print) a JSON object with a table of dish sub-types
  * @see Type
  */
-function listSsTypesCallback() {
+function listSsTypesOptionsCallback() {
 	$type = new Type($_GET["type"]);
-	print $type->getSsTypesJSON();
+	print $type->getSsTypesOptionsJSON();
 	die();
 }
