@@ -202,8 +202,8 @@ add_action( 'wp_ajax_delete_menu', 'deleteMenuCallback' );
 
 add_action( 'wp_ajax_list_dishes_from_type', 'listDishesFromTypeCallback' );
 
-add_action( 'wp_ajax_list_types',  'listTypesCallback'  );
-add_action( 'wp_ajax_list_sstypes','listSsTypesCallback');
+add_action( 'wp_ajax_list_types_options',  'listTypesOptionsCallback'  );
+add_action( 'wp_ajax_list_sstypes_options','listSsTypesOptionsCallback');
 
 load_plugin_textdomain('daily-menu', false, basename( dirname( __FILE__ ) ) . '/languages' );
 

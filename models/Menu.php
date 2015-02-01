@@ -100,7 +100,7 @@ class Menu {
 	 * Returns the date of the menu
 	 */
 	function getDate() {
-		return $this->date->format("Y-m-d");
+		return $this->date->format(__("Y-m-d"));
 	}
 	
 	/**
@@ -108,7 +108,7 @@ class Menu {
 	 * @param string $arg A string representing the date in yyyy-mm-dd format
 	 */
 	function setDate($arg) {
-		$newDate = DateTime::createFromFormat("Y-m-d",$arg);
+		$newDate = DateTime::createFromFormat(__("Y-m-d"),$arg);
 		$this->date = $newDate;
 	}
 	

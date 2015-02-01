@@ -53,10 +53,11 @@ class Type {
 	}
 	
 	/**
-	 * Retrieves the list of the sub type and serialize into a JSON object in accordance of jTable specs
+	 * Retrieves the list of the sub type and serialize into a JSON object
+	 * representing an option list, in accordance of jTable specs
 	 * @return string
 	 */
-	public function getSsTypesJSON() {
+	public function getSsTypesOptionsJSON() {
 		$rows = $this->getSsTypesTable();
 		
 		// Array is decomposed into a table of options as described by jTable
@@ -75,6 +76,24 @@ class Type {
 		// Outputs the result
 		return json_encode($jTableResult);
 	}
+	
+	/**
+	 * Retrieves the list of the sub type and serialize into a JSON object
+	 * representing a result set
+	 * @return string
+	 */
+	public function getSsTypesJSON() {
+		$rows = $this->getSsTypesTable();
+	
+		//Returns result to jTable
+		$jTableResult = array();
+		$jTableResult['Result'] = "OK";
+		$jTableResult['Records'] = $rows;
+	
+		// Outputs the result
+		return json_encode($jTableResult);
+	}
+	
 	
 	/**
 	 * Fill id and text type from a HTTP request
@@ -106,6 +125,8 @@ class Type {
 	 * TODO : complete stub
 	 */
 	public function save() {
+		//$types = get_option(Type::OPTION_ID);
+		//$types[] = 
 		return;
 	}
 	
