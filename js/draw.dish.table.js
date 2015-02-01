@@ -37,7 +37,7 @@
 					},
 					type: {
 						title: objectL10n.column_type_title,
-						options: ajax_object.ajax_url.concat('?action=list_types')
+						options: ajax_object.ajax_url.concat('?action=list_types_options')
 						//width: '40%'
 						//type: 'date',
 					},
@@ -45,7 +45,7 @@
 						title: objectL10n.column_sstype_title,
 						dependsOn: 'type',
 						options: function (data) {
-	                        return ajax_object.ajax_url.concat('?action=list_sstypes&type=' + data.dependedValues.type);
+	                        return ajax_object.ajax_url.concat('?action=list_sstypes_options&type=' + data.dependedValues.type);
 	                    }
 						//width: '40%'
 						//type: 'date',
