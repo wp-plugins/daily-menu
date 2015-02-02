@@ -12,14 +12,14 @@
 				//multiSorting: true,
 				actions: {
 					listAction: ajax_object.ajax_url.concat('?action=list_types'),
-					createAction: ajax_object.ajax_url.concat('?action=create_types'),
-					updateAction: ajax_object.ajax_url.concat('?action=update_types'),
-					deleteAction: ajax_object.ajax_url.concat('?action=delete_types')
+					//createAction: ajax_object.ajax_url.concat('?action=create_types'),
+					//updateAction: ajax_object.ajax_url.concat('?action=update_types'),
+					//deleteAction: ajax_object.ajax_url.concat('?action=delete_types')
 				},
 				fields: {
 					id_type: {
 						key: true,
-						create: true,
+						create: false,
 						edit: false,
 						list: true
 					},

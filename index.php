@@ -40,6 +40,7 @@ require_once( DM_PLUGIN_DIR . '/controllers/ListMenus.php' );
 
 require_once( DM_PLUGIN_DIR . '/controllers/MenuTableControlFunctions.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/DishTableControlFunctions.php' );
+require_once( DM_PLUGIN_DIR . '/controllers/TypeTableControlFunctions.php' );
 
 require_once( DM_PLUGIN_DIR . '/view/DailyMenuWidget.php' );
 
@@ -204,6 +205,9 @@ add_action( 'wp_ajax_list_dishes_from_type', 'listDishesFromTypeCallback' );
 
 add_action( 'wp_ajax_list_types_options',  'listTypesOptionsCallback'  );
 add_action( 'wp_ajax_list_sstypes_options','listSsTypesOptionsCallback');
+
+add_action( 'wp_ajax_list_types',  'listTypesCallback'  );
+add_action( 'wp_ajax_list_sstypes','listSsTypesCallback');
 
 load_plugin_textdomain('daily-menu', false, basename( dirname( __FILE__ ) ) . '/languages' );
 

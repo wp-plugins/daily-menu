@@ -18,7 +18,9 @@ function listTypesCallback() {
 /**
  * This function is called by Javascript in order to save a type of dish (e.g starters, accompaniment, etc.)
  * It returns (more exactly print) a JSON object with the just saved type
+ * Not used right
  * @see Type
+ * @ignore
  */
 function createTypeCallback() {
 	$type = new Type();
@@ -36,7 +38,9 @@ function createTypeCallback() {
  * This function is called by Javascript in order to update a type of dish (e.g. starters, accompaniments, etc.)
  * It returns (more exactly print) a JSON object with the just saved type 
  * The parameter "id_type" is expected in the HTTP request and must correspond to the ID of an existing type
+ * Not used right
  * @see Type
+ * @ignore
  */
 function updateTypeCallback() {
 	$type = new Type($_POST["id_type"]);
@@ -53,8 +57,10 @@ function updateTypeCallback() {
 /**
  * This function is called by Javascript in order to delete a type of dish
  * It returns (more exactly print) a JSON object with the just deleted type
-* The parameter "id_type" is expected in the HTTP request and must correspond to the ID of an existing type
+ * The parameter "id_type" is expected in the HTTP request and must correspond to the ID of an existing type
+ * Not used right
  * @see Type
+ * @ignore
  */
 function deleteTypeCallback() {
 	$type = new Type($_POST["id_type"]);
