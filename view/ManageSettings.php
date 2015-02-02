@@ -1,9 +1,29 @@
 <?php
+
+if (!defined("DM_PLUGIN_DIR")) {
+	define( 'DM_PLUGIN_DIR', 		WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
+}
+
+require_once( DM_PLUGIN_DIR . '/controllers/ListTypes.php');
+
+
+wp_enqueue_script( 'jtable' ); // loads jquery and jtable as well as it has dependency on it
+wp_enqueue_script( 'jtable.localization' ); // loads languages for Jtable
+wp_enqueue_script( 'draw.type.table' );
+//wp_enqueue_style( 'jtable.basic' );
+wp_enqueue_style( 'jtable.blue' );
+wp_enqueue_style( 'jtable.jquery-ui' );
+
+
 echo "<h1>".__("Settings",DM_DOMAIN_NAME)."</h1>";
 
 echo "<h2>".__("General options",DM_DOMAIN_NAME)."</h2>";
 
-echo "<p>".__("No options yet.",DM_DOMAIN_NAME)."</p>";
+echo "<h3>".__("Manage sub-types of dish",DM_DOMAIN_NAME)."</p>";
+
+echo '<p>';
+echo '<div id="TypesTableContainer" style="width:90%"></div>';
+echo '</p>';
 
 echo "<h2>".__("Instructions for use",DM_DOMAIN_NAME)."</h2>";
 

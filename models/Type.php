@@ -11,6 +11,7 @@ class Type {
 	private $id;
 	private $text;
 	const  OPTION_ID = "dm_type_list";
+	const  SSTYPE_OPTION_ID = "dm_sstype_list";
 	
 	/**
 	 * The constructor of the dish class. Can be initialized with the code of a dish
@@ -42,7 +43,14 @@ class Type {
 	public static function getOptionId() {
 		return self::OPTION_ID;
 	}
-	
+
+	/**
+	 * Gives the name of the option used to store the sub-types
+	 * @return string
+	 */
+	public static function getSsTypeOptionId() {
+		return self::SSTYPE_OPTION_ID;
+	}
 	/**
 	 * Lists the subtypes of the type represented by this object
 	 * @return mixed

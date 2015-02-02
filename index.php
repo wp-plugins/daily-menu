@@ -133,6 +133,7 @@ function addDMScripts() {
 		wp_register_script( "jtable.localization", $jtableLibrary,array( 'jtable'));
 	}	
 	
+	//register js and css for dish management
 	wp_register_script( "draw.dish.table", plugins_url("js/draw.dish.table.js", __FILE__ ), array("jtable"));
 	wp_localize_script( 'draw.dish.table', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
 	wp_localize_script( 'draw.dish.table','objectL10n', array(
@@ -144,7 +145,9 @@ function addDMScripts() {
 		'column_picture_title' => __("Picture",DM_DOMAIN_NAME),
 		'column_picture_text' => __("Select a picture",DM_DOMAIN_NAME)
 	));
+
 	
+	//register js and css for menu management
 	wp_register_script( "draw.menu.table", plugins_url("js/draw.menu.table.js", __FILE__ ), array("jtable"));
 	wp_localize_script( 'draw.menu.table', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
 	wp_localize_script( 'draw.menu.table','objectL10n', array(
@@ -156,6 +159,15 @@ function addDMScripts() {
 		'column_accompaniment_title' => __("Accompaniment",DM_DOMAIN_NAME),
 		'column_dairy_title' => __("Dairy",DM_DOMAIN_NAME),
 		'column_dessert_title' => __("Dessert",DM_DOMAIN_NAME)
+	));
+	
+	//register js and css for types management
+	wp_register_script( "draw.type.table", plugins_url("js/draw.type.table.js", __FILE__ ), array("jtable"));
+	wp_localize_script( 'draw.type.table', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
+	wp_localize_script( 'draw.type.table','objectL10n', array(
+	'table_title' => __("Type and sub-types of dish",DM_DOMAIN_NAME),
+	'column_text_title' => __("Type of dish",DM_DOMAIN_NAME),
+	'column_text_img_title' => __("Edit sub-types",DM_DOMAIN_NAME)
 	));
 	
 }

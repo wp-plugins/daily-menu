@@ -21,10 +21,13 @@
 						key: true,
 						create: false,
 						edit: false,
-						list: true
+						list: true,
+						display: function (type) {
+							return '<img src="../img/list_types.png" title="'+objectL10n.column_text_img_title+'" />';
+						}
 					},
 					text: {
-						title: objectL10n.column_text_title,
+						title: objectL10n.column_text_title
 						//sorting: true
 						//width: '40%'
 						//type: 'date',

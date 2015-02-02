@@ -1,5 +1,7 @@
 <?php
 require_once( DM_PLUGIN_DIR . '/models/Dish.php' );
+require_once( DM_PLUGIN_DIR . '/models/Type.php' );
+
 class InstallController {
 	function __construct() {
 	}
@@ -55,8 +57,8 @@ class InstallController {
 		
 		dbDelta( $sql );
 		
-		// Adding type of dish
-		add_option("dm_type_list", array(
+		// Adding master types of dish
+		add_option(Type::getOptionId(), array(
 			Dish::STARTER_CODE => __("Starter",DM_DOMAIN_NAME),
 			Dish::MAIN_COURSE_CODE => __("Main course",DM_DOMAIN_NAME),
 			Dish::ACCOMPANIMENT_CODE => __("Accompaniment",DM_DOMAIN_NAME),
@@ -64,9 +66,8 @@ class InstallController {
 			Dish::DESSERT_CODE => __("Dessert",DM_DOMAIN_NAME)
 		));
 		
-		// Adding sub-type of dish
-
-		add_option("dm_sstype_list", array(
+		// Adding sub-type of dish samples
+		add_option(Type::getSsTypeOptionId(), array(
 			Dish::DESSERT_CODE => array(
 				"FRU" => __("Fruit",DM_DOMAIN_NAME),
 				"PAT" => __("Cake",DM_DOMAIN_NAME),

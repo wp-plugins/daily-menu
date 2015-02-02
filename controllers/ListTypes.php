@@ -45,10 +45,18 @@ class ListTypes {
 	public static function getAllTypesJSON() {
 		$rows = ListTypes::getAllTypesTable();
 	
+		// Array is decomposed into a table of options as described by jTable
+		foreach ($rows as $id => $text) {
+			$options[] = array(
+					"id_type" => $id,
+					"text" => $text
+			);
+		}
+		
 		//Returns result to jTable
 		$jTableResult = array();
 		$jTableResult['Result'] = "OK";
-		$jTableResult['Records'] = $rows;
+		$jTableResult['Records'] = $options;
 	
 		// Outputs the result
 		return json_encode($jTableResult);
