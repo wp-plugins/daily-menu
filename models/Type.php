@@ -93,10 +93,19 @@ class Type {
 	public function getSsTypesJSON() {
 		$rows = $this->getSsTypesTable();
 	
+		// Array is decomposed into a table of options as described by jTable
+		foreach ($rows as $id => $text) {
+			$options[] = array(
+					"id_type" => $this->getId(),
+					"id_sstype" => $id,
+					"sstext" => $text
+			);
+		}
+		
 		//Returns result to jTable
 		$jTableResult = array();
 		$jTableResult['Result'] = "OK";
-		$jTableResult['Records'] = $rows;
+		$jTableResult['Records'] = $options;
 	
 		// Outputs the result
 		return json_encode($jTableResult);
@@ -159,4 +168,49 @@ class Type {
 		return json_encode($jTableResult);
 	}
 	
+	/**
+	 * Adds a sub type to the current type
+	 * @param string $id
+	 * @param string $text
+	 */
+	function addSsType($text,$id) {
+		$sstypes = get_option(Type::getSsTypeOptionId());
+		if (isset($sstypes[$this->getId()][$id])) {
+			return false;
+		}
+		// TODO : ID generation if not present
+		$sstypes[$this->getId()][$id] = $text;
+		update_option(Type::getSsTypeOptionId(), $sstypes);
+		return true;
+	}
+	
+	/**
+	 * Updates a sub type of the current type
+	 * @param string $id
+	 * @param string $text
+	 */
+	function updateSsType($text,$id) {
+		$sstypes = get_option(Type::getSsTypeOptionId());
+		if (!isset($sstypes[$this->getId()][$id])) {
+			return false;
+		}
+		$sstypes[$this->getId()][$id] = $text;
+		update_option(Type::getSsTypeOptionId(), $sstypes);
+		return true;
+	}
+	
+	/**
+	 * Deletes a sub type of the current type
+	 * @param string $id
+	 * @param string $text
+	 */
+	function deleteSsType($id) {
+		$sstypes = get_option(Type::getSsTypeOptionId());
+		if (!isset($sstypes[$this->getId()][$id])) {
+			return false;
+		}
+		unset($sstypes[$this->getId()][$id]);
+		update_option(Type::getSsTypeOptionId(), $sstypes);
+		return true;
+	}
 }

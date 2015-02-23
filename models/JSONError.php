@@ -13,7 +13,7 @@ class JSONError implements JsonSerializable {
 	 * @param unknown $arg
 	 */
 	function __construct($arg = null){
-		$jTableResult['Message'] = $arg;
+		$messages[] = $arg;
 	}
 	
 	/**

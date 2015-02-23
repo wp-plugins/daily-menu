@@ -163,11 +163,14 @@ function addDMScripts() {
 	
 	//register js and css for types management
 	wp_register_script( "draw.type.table", plugins_url("js/draw.type.table.js", __FILE__ ), array("jtable"));
-	wp_localize_script( 'draw.type.table', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
+	wp_localize_script( 'draw.type.table', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
+																 'img_list_types_url' => plugins_url("img/list_types.png", __FILE__ )));
 	wp_localize_script( 'draw.type.table','objectL10n', array(
 	'table_title' => __("Type and sub-types of dish",DM_DOMAIN_NAME),
 	'column_text_title' => __("Type of dish",DM_DOMAIN_NAME),
-	'column_text_img_title' => __("Edit sub-types",DM_DOMAIN_NAME)
+	'column_text_img_title' => __("Edit sub-types",DM_DOMAIN_NAME),
+	'table_sstitle' => __("Sub-types",DM_DOMAIN_NAME),
+	'column_sstext_title' => __("Subtype of dish",DM_DOMAIN_NAME),
 	));
 	
 }
@@ -220,6 +223,9 @@ add_action( 'wp_ajax_list_sstypes_options','listSsTypesOptionsCallback');
 
 add_action( 'wp_ajax_list_types',  'listTypesCallback'  );
 add_action( 'wp_ajax_list_sstypes','listSsTypesCallback');
+add_action( 'wp_ajax_create_sstypes', 'createSsTypeCallback' );
+add_action( 'wp_ajax_update_sstypes', 'updateSsTypeCallback' );
+add_action( 'wp_ajax_delete_sstypes', 'deleteSsTypeCallback' );
 
 load_plugin_textdomain('daily-menu', false, basename( dirname( __FILE__ ) ) . '/languages' );
 

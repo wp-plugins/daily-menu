@@ -22,15 +22,43 @@
 						create: false,
 						edit: false,
 						list: true,
-						display: function (type) {
-							return '<img src="../img/list_types.png" title="'+objectL10n.column_text_img_title+'" />';
+						display: function (data) {
+							var $img = $('<img src="'+ajax_object.img_list_types_url+'" title="'+objectL10n.column_text_img_title+'"/>');
+							$img.click(function() {
+								$('#TypesTableContainer').jtable('openChildTable',
+							            $img.closest('tr'),
+							            {
+							                title: objectL10n.table_sstitle,
+							                actions: {
+							                    listAction: ajax_object.ajax_url.concat('?action=list_sstypes&type=' + data.record.id_type),
+							                    createAction: ajax_object.ajax_url.concat('?action=create_sstypes'),
+							                    updateAction: ajax_object.ajax_url.concat('?action=update_sstypes'),
+							                    deleteAction: ajax_object.ajax_url.concat('?action=delete_sstypes&type=' + data.record.id_type)
+							                },
+							                fields: {
+							                	id_type: {
+							                        type: 'hidden',
+							                        defaultValue: data.record.id_type
+							                    },
+							                    id_sstype: {
+							                        key: true,
+							                        create: true,
+							                        edit: false,
+							                        list: true
+							                    },
+							                    sstext: {
+							                        title: objectL10n.column_sstext_title
+							                    }
+							                }
+							            }, function (data) { //opened handler
+							                data.childTable.jtable('load');
+							            });
+							});
+							return $img;
 						}
 					},
 					text: {
 						title: objectL10n.column_text_title
-						//sorting: true
-						//width: '40%'
-						//type: 'date',
 					}					
 				}
 			});
@@ -39,5 +67,4 @@
 			$('#TypesTableContainer').jtable('load');
 
 	})(jQuery);
-
 
