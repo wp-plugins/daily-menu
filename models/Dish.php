@@ -31,7 +31,7 @@ class Dish {
 	function __construct($id = 0){
 		global $wpdb;
 		$this->table_name = $wpdb->prefix . self::TABLE_SUFFIX;
-		$this->id_dish = $id;
+		$this->id_dish = sanitize_text_field($id);
 	}
 	
 	/**

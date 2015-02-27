@@ -33,9 +33,9 @@ class DailyMenuWidget extends WP_Widget {
 			return ;
 		}
 		
-		$html = esc_html($args['before_widget']);
+		$html = $args['before_widget'];
 		
-		$html .= esc_html($args['before_title']);
+		$html .= $args['before_title'];
 		
 		$day = new DateTime($nextMenu->getDate());
 		/* translators:
@@ -47,7 +47,7 @@ class DailyMenuWidget extends WP_Widget {
 					date_i18n("j",$day->getTimestamp()),
 					date_i18n("F",$day->getTimestamp()));
 		
-		$html .= esc_html($args['after_title']);
+		$html .= $args['after_title'];
 		
 		$html .= "<dl align=\"center\">";
 		
@@ -69,7 +69,7 @@ class DailyMenuWidget extends WP_Widget {
 			$html .= "</ul>";
 		}
 
-		$html .= esc_html($args['after_widget']);
+		$html .= $args['after_widget'];
 		
 		echo $html;
 

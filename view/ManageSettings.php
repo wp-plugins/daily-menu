@@ -22,7 +22,7 @@ echo "<h2>".__("General options",DM_DOMAIN_NAME)."</h2>";
 echo "<h3>".__("Manage sub-types of dish",DM_DOMAIN_NAME)."</p>";
 
 echo '<p>';
-echo '<div id="TypesTableContainer" style="width:90%"></div>';
+echo '<div id="TypesTableContainer" style="width:400px"></div>';
 echo '</p>';
 
 echo "<h2>".__("Instructions for use",DM_DOMAIN_NAME)."</h2>";
@@ -42,14 +42,5 @@ echo "<p>".sprintf(__("Insert the following shortcode
 
 echo "<p>".__("You can add a widget on your slide bar with the menu of the day,
 		or the coming next menu, if it is 4 PM or after.",DM_DOMAIN_NAME)."</p>";
-
-echo "<p>".__("Here are the coming next functionalities:",DM_DOMAIN_NAME);
-echo "<ol>";
-echo "<li>".__("a comprehensive page of general options to handle subtypes, css styles, language, etc.",DM_DOMAIN_NAME)."</li>";
-echo "<li>".__("more options to the dm_menu shortcode",DM_DOMAIN_NAME)."</li>";
-echo "<li>".__("handling of multi-menu per day",DM_DOMAIN_NAME)."</li>";
-echo "<li>...</li>";
-echo "</ol>";
-echo "</p>";
 
 echo "<p>".__("This plugin uses jTable (http://www.jtable.org/).",DM_DOMAIN_NAME)."</p>";

@@ -22,6 +22,7 @@
 						create: false,
 						edit: false,
 						list: true,
+						width: '20%',
 						display: function (data) {
 							var $img = $('<img src="'+ajax_object.img_list_types_url+'" title="'+objectL10n.column_text_img_title+'"/>');
 							$img.click(function() {
@@ -44,10 +45,20 @@
 							                        key: true,
 							                        create: true,
 							                        edit: false,
-							                        list: true
+							                        list: true,
+							                        title: objectL10n.column_id_sstype_title,
+													width: '20%',
+							                        input: function (sstype_data) {
+							                            if (sstype_data.value) {
+							                                return '<input type="text" maxlength="3" name="id_sstype" value="' + sstype_data.value + '" />';
+							                            } else {
+							                                return '<input type="text" maxlength="3" name="id_sstype" />';
+							                            }
+							                        }
 							                    },
 							                    sstext: {
-							                        title: objectL10n.column_sstext_title
+													width: '60%',
+							                    	title: objectL10n.column_sstext_title
 							                    }
 							                }
 							            }, function (data) { //opened handler
@@ -58,7 +69,8 @@
 						}
 					},
 					text: {
-						title: objectL10n.column_text_title
+						title: objectL10n.column_text_title,
+						width: '80%'
 					}					
 				}
 			});

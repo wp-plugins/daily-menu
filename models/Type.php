@@ -18,7 +18,7 @@ class Type {
 	 * @param number $id
 	 */
 	function __construct($id = 0){
-		$this->id = $id;
+		$this->id = sanitize_text_field($id);
 	}
 	
 	/**
@@ -126,7 +126,7 @@ class Type {
 	 * @param unknown $arg
 	 */
 	public function setId($arg) {
-		$this->id = $arg;
+		$this->id = sanitize_text_field($arg);
 	}
 	
 	/**
@@ -134,7 +134,7 @@ class Type {
 	 * @param unknown $arg
 	 */
 	public function setText($arg) {
-		$this->text = $arg;
+		$this->text = sanitize_text_field($arg);
 	}
 	
 	/**
@@ -175,11 +175,12 @@ class Type {
 	 */
 	function addSsType($text,$id) {
 		$sstypes = get_option(Type::getSsTypeOptionId());
+		$id = sanitize_text_field($id);
 		if (isset($sstypes[$this->getId()][$id])) {
 			return false;
 		}
 		// TODO : ID generation if not present
-		$sstypes[$this->getId()][$id] = $text;
+		$sstypes[$this->getId()][$id] = sanitize_text_field($text);
 		update_option(Type::getSsTypeOptionId(), $sstypes);
 		return true;
 	}
@@ -191,10 +192,11 @@ class Type {
 	 */
 	function updateSsType($text,$id) {
 		$sstypes = get_option(Type::getSsTypeOptionId());
+		$id = sanitize_text_field($id);
 		if (!isset($sstypes[$this->getId()][$id])) {
 			return false;
 		}
-		$sstypes[$this->getId()][$id] = $text;
+		$sstypes[$this->getId()][$id] = sanitize_text_field($text);
 		update_option(Type::getSsTypeOptionId(), $sstypes);
 		return true;
 	}
@@ -206,6 +208,7 @@ class Type {
 	 */
 	function deleteSsType($id) {
 		$sstypes = get_option(Type::getSsTypeOptionId());
+		$id = sanitize_text_field($id);
 		if (!isset($sstypes[$this->getId()][$id])) {
 			return false;
 		}

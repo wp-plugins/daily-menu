@@ -54,7 +54,11 @@
 						title: objectL10n.column_picture_title,
 						sorting: false,
 					    input: function (data) {
-					    	html = '<input type="text" name="picture" value="' + data.value + '" />';
+					    	if (data.value) {
+					    		html = '<input type="hidden" name="picture" value="' + data.value + '" />';
+					    	} else {
+					    		html = '<input type="hidden" name="picture" />';
+					    	}
 					    	html += '<a href="#" onClick="javascript: selectPicture();">';
 					    	html += objectL10n.column_picture_text;
 					    	html += '</a>';

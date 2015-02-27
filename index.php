@@ -171,6 +171,7 @@ function addDMScripts() {
 	'column_text_img_title' => __("Edit sub-types",DM_DOMAIN_NAME),
 	'table_sstitle' => __("Sub-types",DM_DOMAIN_NAME),
 	'column_sstext_title' => __("Subtype of dish",DM_DOMAIN_NAME),
+	'column_id_sstype_title' => __("ID",DM_DOMAIN_NAME),
 	));
 	
 }
