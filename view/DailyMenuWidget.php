@@ -49,7 +49,7 @@ class DailyMenuWidget extends WP_Widget {
 		
 		$html .= $args['after_title'];
 		
-		$html .= "<dl align=\"center\">";
+		$html .= "<dl style=\"text-align: center;\">";
 		
 		// dish lines
 		foreach ($types as $type => $typename) {

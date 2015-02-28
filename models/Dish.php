@@ -45,6 +45,7 @@ class Dish {
 			$id = $this->id_dish;
 		}
 		if (!isset($id)) return;
+		if (!$id) return;
 		$result	= $wpdb->get_row("SELECT picture,composition,name,sstype,type,id_dish FROM ".$this->table_name." WHERE ID_DISH=". $id);
 		$this->type = $result->type;
 		$this->sstype = $result->sstype;
