@@ -147,7 +147,10 @@ abstract class ListMenus {
 			"	on menu.id_dish = dairy.id_dish and dairy.type='".Dish::DAIRY_CODE."' ".
 			"left outer join ".$wpdb->prefix . Dish::getTableSuffix()." dessert ".
 			"	on menu.id_dish = dessert.id_dish and dessert.type='".Dish::DESSERT_CODE."' ".
-			"where EXTRACT(WEEK FROM menu.date) = EXTRACT(WEEK FROM CURRENT_DATE) ".
+				// selection of the next week with menu
+			"where EXTRACT(WEEK FROM menu.date) = (	select min(EXTRACT(WEEK FROM next_menu.date)) ".
+			"		FROM ".$wpdb->prefix . Menu::getTableSuffix()." next_menu ".
+			"		where next_menu.date > CURRENT_DATE ) ".
 			"group by menu.date order by menu.date DESC"
 		);
 	
@@ -176,33 +179,94 @@ abstract class ListMenus {
 	public static function getWeekMenusHTML() {
 		$menus = ListMenus::getWeekMenus();
 		if (!isset($menus)) {
-			return (__("No menu this week !",DM_DOMAIN_NAME));
+			return (__("No menu set yet !",DM_DOMAIN_NAME));
 		}
 		$types = ListTypes::getAllTypesTable();
 		$html = "<table class=\"daily-menu\">";
 		
 		// header line with the days of the week
+		if (!isset($menus[0])) {
+			return "";
+		}
 		$html .= "<tr>";
-		$html .= "<th class=\"daily-menu\">".__("Day",DM_DOMAIN_NAME)."</th>";
+
+		$html .= "<th class=\"daily-menu\">";
+		/* translators:
+		 * %1$d is the year
+		 * %2$d is the number of the week within the year*/
+		$html .= sprintf(__("%1$d \n Week $d",DM_DOMAIN_NAME),
+				$menus[0]->getDateTime()->format('o'),
+				$menus[0]->getDateTime()->format('W'));
+		$html .= "</th>";
 		foreach (array_reverse($menus) as $menu) {
-			$day = new DateTime($menu->getDate());
-			$html .= "<th class=\"daily-menu daily-menu_day\">".date_i18n("l",$day->getTimestamp())."</th>";
+
+			$html .= "<th class=\"daily-menu daily-menu_day\">";
+			/* translators:
+			 * %1$s is the name of the day,
+			 * %2$d is the number of the day within month
+			 * %3$s is the name of the month*/
+			$html .= sprintf(esc_html__('%1$s, %2$d of %3$s',DM_DOMAIN_NAME),
+					date_i18n("l",$menu->getDateTime()->getTimestamp()),
+					date_i18n("j",$menu->getDateTime()->getTimestamp()),
+					date_i18n("F",$menu->getDateTime()->getTimestamp()));
+			$html .= "</th>";
 		}
 		$html .= "</tr>";
 		
-		// dish lines
+		// seeking for rowspan in advance
+		foreach (array_reverse($menus) as $menu) {
+			if ($menu->getDish(Dish::ACCOMPANIMENT_CODE)->getName() != null) {
+				$needMainCourseRowspan[$menu->getDate()] = false;
+			} else {
+				$needMainCourseRowspan[$menu->getDate()] = true;
+			}
+			if ($menu->getDish(Dish::DAIRY_CODE)->getName() != null) {
+				$needDessertRowspan[$menu->getDate()] = false;
+			} else {
+				$needDessertRowspan[$menu->getDate()] = true;
+			}
+		}
+		
+		// building table, starting with dish lines
 		foreach ($types as $type => $typename) {
 			$html .= "<tr>";
 			$html .= "<th class=\"daily-menu daily-menu_dish\">".esc_html($typename)."</th>";
+			
+			// menu cols
 			foreach (array_reverse($menus) as $menu) {
 				$background = "";
-				if (!$menu->getDish($type)->getPicture()==null) {
+				$drawtype = $type;
+				$rawspan = "";
+				
+				if ($needMainCourseRowspan[$menu->getDate()] && $type==Dish::MAIN_COURSE_CODE) {
+					$rawspan = "rowspan=\"2\"";
+				}
+					
+				if ($needDessertRowspan[$menu->getDate()] && $type==Dish::DAIRY_CODE) {
+					$drawtype = Dish::DESSERT_CODE;
+					$rawspan = "rowspan=\"2\"";
+				}
+				
+				if ($needDessertRowspan[$menu->getDate()] && $type==Dish::DESSERT_CODE) {
+					continue;
+				}
+				
+				if (!$menu->getDish($drawtype)->getPicture()==null) {
 					$background .= 'style="background:url(\'';
-					$background .= wp_get_attachment_url( $menu->getDish($type)->getPicture());
+					$background .= wp_get_attachment_url( $menu->getDish($drawtype)->getPicture());
 					$background .= '\')0px 0px; text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px white, 0 -2px 2px white; "';
 				}
-				$html .= "<td ".$background." class=\"daily-menu daily-menu_dish\">".esc_html($menu->getDish($type)->getName())."</td>";
+				
+				if (!$menu->getDish($drawtype)->getName()==null) {
+					$html .= "<td ";
+					$html .= $background." ";
+					$html .= $rawspan." ";
+					$html .= "class=\"daily-menu daily-menu_dish\">";
+					$html .= esc_html($menu->getDish($drawtype)->getName());
+					$html .= "</td>";
+				}
 			}
+			
 			$html .= "</tr>";
 		}
 		$html .= "</table>";

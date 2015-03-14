@@ -97,10 +97,17 @@ class Menu {
 	static function getTableSuffix() { return SELF::TABLE_SUFFIX; }
 	
 	/**
-	 * Returns the date of the menu
+	 * Returns the date of the menu formated as string
 	 */
 	function getDate() {
 		return $this->date->format(__("Y-m-d"));
+	}
+	
+	/**
+	 * Returns the date object of the menu
+	 */
+	function getDateTime() {
+		return $this->date;
 	}
 	
 	/**
