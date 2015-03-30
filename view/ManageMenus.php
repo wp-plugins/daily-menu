@@ -10,8 +10,7 @@ require_once( DM_PLUGIN_DIR . '/controllers/ListMenus.php');
 wp_enqueue_script( 'jtable' ); // loads jquery and jtable as well as it has dependency on it
 wp_enqueue_script( 'jtable.localization' ); // loads languages for Jtable
 wp_enqueue_script( 'draw.menu.table' );
-//wp_enqueue_style( 'jtable.basic' );	
-wp_enqueue_style( 'jtable.blue' );	
+wp_enqueue_style( 'jtable' );	
 wp_enqueue_style( 'jtable.jquery-ui' );	
 
 echo '<p>';

@@ -5,12 +5,12 @@ if (!defined("DM_PLUGIN_DIR")) {
 }
 
 require_once( DM_PLUGIN_DIR . '/controllers/ListTypes.php');
-
+require_once( DM_PLUGIN_DIR . '/controllers/ListThemes.php');
+require_once( DM_PLUGIN_DIR . '/controllers/ListAdminThemes.php');
 
 wp_enqueue_script( 'jtable' ); // loads jquery and jtable as well as it has dependency on it
 wp_enqueue_script( 'jtable.localization' ); // loads languages for Jtable
 wp_enqueue_script( 'draw.type.table' );
-//wp_enqueue_style( 'jtable.basic' );
 wp_enqueue_style( 'jtable.blue' );
 wp_enqueue_style( 'jtable.jquery-ui' );
 
@@ -19,11 +19,64 @@ echo "<h1>".__("Settings",DM_DOMAIN_NAME)."</h1>";
 
 echo "<h2>".__("General options",DM_DOMAIN_NAME)."</h2>";
 
-echo "<h3>".__("Manage sub-types of dish",DM_DOMAIN_NAME)."</p>";
+echo "<h3>".__("Manage sub-types of dish",DM_DOMAIN_NAME)."</h3>";
 
 echo '<p>';
 echo '<div id="TypesTableContainer" style="width:400px"></div>';
 echo '</p>';
+
+echo "<h2>".__("Styles",DM_DOMAIN_NAME)."</h2>";
+
+echo "<form method=\"post\" action=\"options.php\">";
+settings_fields("dm_settings_group");
+do_settings_sections("dm_settings_group");
+
+echo "<h3>".__("Shortcode styles",DM_DOMAIN_NAME)."</h3>";
+
+$dirs = ListThemes::getAvailableThemes();
+if ($dirs) {
+	echo "<select name=\"dm_shotcode_css\">";
+	foreach ($dirs as $dir) {
+		$selected = "";
+		if ($dir == ListThemes::getSelectedTheme()) {
+			$selected = "selected";
+		}
+		echo "<option value=\"".$dir."\" ".$selected.">".$dir."</option>";
+	}
+	echo "</select>";
+} else {
+	echo "<input name=\"dm_shotcode_css\" type=\"text\" value=\"".ListThemes::getSelectedTheme()."\" />";
+}
+
+echo "<h3>".__("Admin menu styles",DM_DOMAIN_NAME)."</h3>";
+
+$dirs = ListAdminThemes::getAvailableJQueryUiThemes();
+
+echo "<select name=\"dm_shotcode_jquery_css\">";
+foreach ($dirs as $dir) {
+	$selected = "";
+	if ($dir == ListAdminThemes::getSelectedJQueryUiTheme()) {
+		$selected = "selected";
+	}
+	echo "<option value=\"".$dir."\" ".$selected.">".$dir."</option>";
+}
+echo "</select>";
+
+$dirs = ListAdminThemes::getAvailableJTableThemes();
+
+echo "<select name=\"dm_shotcode_jtable_css\">";
+foreach ($dirs as $dir) {
+	$selected = "";
+	if ($dir == ListAdminThemes::getSelectedJTableTheme()) {
+		$selected = "selected";
+	}
+	echo "<option value=\"".$dir."\" ".$selected.">".$dir."</option>";
+}
+echo "</select>";
+
+echo submit_button();
+
+echo "</form>";
 
 echo "<h2>".__("Instructions for use",DM_DOMAIN_NAME)."</h2>";
 

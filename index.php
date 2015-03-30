@@ -37,10 +37,13 @@ require_once( DM_PLUGIN_DIR . '/controllers/InstallController.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/ListDishes.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/ListTypes.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/ListMenus.php' );
+require_once( DM_PLUGIN_DIR . '/controllers/ListThemes.php' );
+require_once( DM_PLUGIN_DIR . '/controllers/ListAdminThemes.php' );
 
 require_once( DM_PLUGIN_DIR . '/controllers/MenuTableControlFunctions.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/DishTableControlFunctions.php' );
 require_once( DM_PLUGIN_DIR . '/controllers/TypeTableControlFunctions.php' );
+
 
 require_once( DM_PLUGIN_DIR . '/view/DailyMenuWidget.php' );
 
@@ -93,29 +96,22 @@ function addDailyMenuWPMenu() {
 	add_submenu_page( 'ManageDailyMenu', __("Options",DM_DOMAIN_NAME), __("Options",DM_DOMAIN_NAME), 'manage_options', 'DailyMenuOptions', 'showManageDailyMenuWPContent');
 }
 
-
-
 // Other function
 
-
 function addDMStyles() {
-	//wp_enqueue_style("jtable.basic",plugins_url("js/jtable/themes/basic/jtable_basic.css", __FILE__ ));
-	wp_register_style("jtable.blue",plugins_url("js/jtable/themes/metro/blue/jtable.min.css", __FILE__ ));
-	//wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/jqueryui/jtable_jqueryui.min.css", __FILE__ ));
-	wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/jqueryui-redmond/jquery-ui.css", __FILE__ ));
-	//wp_register_style("jtable.jquery-ui",plugins_url("js/jtable/themes/jqueryui-metroblue/jquery-ui.css", __FILE__ ));
-	
+	wp_register_style("jtable",plugins_url(ListAdminThemes::getSelectedJTableThemeURL(), __FILE__ ));
+	wp_register_style("jtable.jquery-ui",plugins_url(ListAdminThemes::getSelectedJQueryUiThemeURL(), __FILE__ ));
 }
 
 function addDMShortcodeStyles() {
-	wp_register_style("daily-menu.week",plugins_url("css/menu_week.css", __FILE__ ));
+	wp_register_style("daily-menu.week",plugins_url(ListThemes::getSelectedThemeURL(), __FILE__ ));
 }
 
 function addDMScripts() {
 //	wp_register_script( "jtable", plugins_url("js/jtable/jquery.jtable.js", __FILE__ ),
 //			array("jquery-ui-core",
 //				"jquery-ui-widget",
-//				"jquery-ui-dialog"));
+//				"jquery-ui-dialog"), '2.4.0' );
 	wp_register_script( 'jtable', plugins_url("js/jtable/jquery.jtable.min.js", __FILE__ ),
 		array( 'jquery-ui-widget', 'jquery-ui-mouse', 'jquery-ui-position', 'jquery-ui-accordion',
 			'jquery-ui-autocomplete', 'jquery-ui-button', 'jquery-ui-datepicker', 'jquery-ui-dialog',
@@ -176,6 +172,15 @@ function addDMScripts() {
 	
 }
 
+
+function registerSettings() {
+	//register our settings
+	register_setting( 'dm_settings_group', 'dm_shotcode_css' );
+	register_setting( 'dm_settings_group', 'dm_shotcode_jquery_css' );
+	register_setting( 'dm_settings_group', 'dm_shotcode_jtable_css' );
+}
+
+
 function addDMWidget(){
 	register_widget( 'DailyMenuWidget' );
 }
@@ -227,6 +232,8 @@ add_action( 'wp_ajax_list_sstypes','listSsTypesCallback');
 add_action( 'wp_ajax_create_sstypes', 'createSsTypeCallback' );
 add_action( 'wp_ajax_update_sstypes', 'updateSsTypeCallback' );
 add_action( 'wp_ajax_delete_sstypes', 'deleteSsTypeCallback' );
+
+add_action( 'admin_init', 'registerSettings' );
 
 load_plugin_textdomain('daily-menu', false, basename( dirname( __FILE__ ) ) . '/languages' );
 
