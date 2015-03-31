@@ -12,6 +12,24 @@ abstract class ListAdminThemes {
 	
 	const JQUERYUI_CSS_DIR = "js/jtable/themes";
 	const JTABLE_CSS_DIR = "js/jtable/themes";
+	const JTABLE_CSS_OPTION_ID = "dm_shotcode_jtable_css";
+	const JQUERYUI_CSS_OPTION_ID = "dm_shotcode_jqueryui_css";
+	
+	/**
+	 * Gives the name of the option used to store the admin style (for JTABLE)
+	 * @return string
+	 */
+	public static function getJTableOptionId() {
+		return self::JTABLE_CSS_OPTION_ID;
+	}
+	
+	/**
+	 * Gives the name of the option used to store the admin style (FOR JQUERYUI)
+	 * @return string
+	 */
+	public static function getJQueryUiOptionId() {
+		return self::JQUERYUI_CSS_OPTION_ID;
+	}
 	
 	/**
 	 * List names of the files in the subdirectory "css"
@@ -19,7 +37,6 @@ abstract class ListAdminThemes {
 	 * @return boolean|multitype:mixed
 	 */
 	public static function getAvailableJQueryUiThemes() {
-		$styles_dir = DM_PLUGIN_DIR . "/".JQUERYUI_CSS_DIR."/";
 		
 		$available = array ();
 
@@ -36,7 +53,7 @@ abstract class ListAdminThemes {
 	 * @return mixed
 	 */
 	public static function getSelectedJQueryUiTheme() {
-		return get_option("dm_shotcode_jquery_css");
+		return get_option(ListAdminThemes::getJQueryUiOptionId());
 	}
 	
 	/**
@@ -44,7 +61,7 @@ abstract class ListAdminThemes {
 	 * @return string
 	 */
 	public static function getSelectedJQueryUiThemeURL() {
-		return JQUERYUI_CSS_DIR."/".ListAdminThemes::getSelectedJQueryUiTheme();
+		return self::JQUERYUI_CSS_DIR."/".ListAdminThemes::getSelectedJQueryUiTheme();
 	}
 	
 	/**
@@ -53,8 +70,7 @@ abstract class ListAdminThemes {
 	 * @return boolean|multitype:mixed
 	 */
 	public static function getAvailableJTableThemes() {
-		$styles_dir = DM_PLUGIN_DIR . "/".JQUERYUI_CSS_DIR."/";
-	
+		
 		$available = array ();
 	
 		$available[]="basic/jtable.min.css";
@@ -84,7 +100,7 @@ abstract class ListAdminThemes {
 	 * @return mixed
 	 */
 	public static function getSelectedJTableTheme() {
-		return get_option("dm_shotcode_jtable_css");
+		return get_option(ListAdminThemes::getJTableOptionId());
 	}
 	
 	/**
@@ -92,7 +108,7 @@ abstract class ListAdminThemes {
 	 * @return string
 	 */
 	public static function getSelectedJTableThemeURL() {
-		return JTABLE_CSS_DIR."/".ListAdminThemes::getSelectedJTableTheme();
+		return self::JTABLE_CSS_DIR."/".ListAdminThemes::getSelectedJTableTheme();
 	}
 	
 }								

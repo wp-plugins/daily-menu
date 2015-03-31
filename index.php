@@ -175,9 +175,9 @@ function addDMScripts() {
 
 function registerSettings() {
 	//register our settings
-	register_setting( 'dm_settings_group', 'dm_shotcode_css' );
-	register_setting( 'dm_settings_group', 'dm_shotcode_jquery_css' );
-	register_setting( 'dm_settings_group', 'dm_shotcode_jtable_css' );
+	register_setting( 'dm_settings_group', ListThemes::getOptionId() );
+	register_setting( 'dm_settings_group', ListAdminThemes::getJQueryUiOptionId() );
+	register_setting( 'dm_settings_group', ListAdminThemes::getJTableOptionId() );
 }
 
 

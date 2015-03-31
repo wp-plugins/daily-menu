@@ -11,7 +11,7 @@ require_once( DM_PLUGIN_DIR . '/controllers/ListAdminThemes.php');
 wp_enqueue_script( 'jtable' ); // loads jquery and jtable as well as it has dependency on it
 wp_enqueue_script( 'jtable.localization' ); // loads languages for Jtable
 wp_enqueue_script( 'draw.type.table' );
-wp_enqueue_style( 'jtable.blue' );
+wp_enqueue_style( 'jtable' );
 wp_enqueue_style( 'jtable.jquery-ui' );
 
 
@@ -35,7 +35,7 @@ echo "<h3>".__("Shortcode styles",DM_DOMAIN_NAME)."</h3>";
 
 $dirs = ListThemes::getAvailableThemes();
 if ($dirs) {
-	echo "<select name=\"dm_shotcode_css\">";
+	echo "<select name=\"".ListThemes::getOptionId()."\">";
 	foreach ($dirs as $dir) {
 		$selected = "";
 		if ($dir == ListThemes::getSelectedTheme()) {
@@ -45,14 +45,14 @@ if ($dirs) {
 	}
 	echo "</select>";
 } else {
-	echo "<input name=\"dm_shotcode_css\" type=\"text\" value=\"".ListThemes::getSelectedTheme()."\" />";
+	echo "<input name=\"".ListThemes::getOptionId()."\" type=\"text\" value=\"".ListThemes::getSelectedTheme()."\" />";
 }
 
 echo "<h3>".__("Admin menu styles",DM_DOMAIN_NAME)."</h3>";
 
 $dirs = ListAdminThemes::getAvailableJQueryUiThemes();
 
-echo "<select name=\"dm_shotcode_jquery_css\">";
+echo "<select name=\"".ListAdminThemes::getJQueryUiOptionId()."\">";
 foreach ($dirs as $dir) {
 	$selected = "";
 	if ($dir == ListAdminThemes::getSelectedJQueryUiTheme()) {
@@ -64,7 +64,7 @@ echo "</select>";
 
 $dirs = ListAdminThemes::getAvailableJTableThemes();
 
-echo "<select name=\"dm_shotcode_jtable_css\">";
+echo "<select name=\"".ListAdminThemes::getJTableOptionId()."\">";
 foreach ($dirs as $dir) {
 	$selected = "";
 	if ($dir == ListAdminThemes::getSelectedJTableTheme()) {

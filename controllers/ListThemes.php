@@ -11,6 +11,15 @@ if (!defined("DM_PLUGIN_DIR")) {
 abstract class ListThemes {
 	
 	const CSS_DIR = "css";
+	const CSS_OPTION_ID = "dm_shotcode_css";
+	
+	/**
+	 * Gives the name of the option used to store the shortcode style
+	 * @return string
+	 */
+	public static function getOptionId() {
+		return self::CSS_OPTION_ID;
+	}
 	
 	/**
 	 * List names of the files in the subdirectory "css"
@@ -18,8 +27,8 @@ abstract class ListThemes {
 	 * @return boolean|multitype:mixed
 	 */
 	public static function getAvailableThemes() {
-		$styles_dir = DM_PLUGIN_DIR . "/". CSS_DIR ."/";
-		
+		$styles_dir = DM_PLUGIN_DIR . "/". self::CSS_DIR ."/";
+
 		$available = array ();
 
 		$dir_handle = @opendir ( $styles_dir );
@@ -54,6 +63,6 @@ abstract class ListThemes {
 	 * @return string
 	 */
 	public static function getSelectedThemeURL() {
-		return CSS_DIR."/".ListThemes::getSelectedTheme();
+		return self::CSS_DIR."/".ListThemes::getSelectedTheme();
 	}
 }								

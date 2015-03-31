@@ -89,6 +89,12 @@ class InstallController {
 				"GRA" => __("Gratin",DM_DOMAIN_NAME))
 		));
 		
+		// Adding default styles
+		add_option(ListAdminThemes::getJTableOptionId(),"lightcolor/blue/jtable.min.css");
+		add_option(ListAdminThemes::getJQueryUiOptionId(),"jqueryui-redmond/jquery-ui.css");
+		add_option(ListThemes::getOptionId(),"menu_week.css");
+		
+		
 		// Adding version number
 		add_option( "dm_db_version", "0.1" );
 		
