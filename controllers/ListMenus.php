@@ -194,7 +194,7 @@ abstract class ListMenus {
 		/* translators:
 		 * %1$d is the year
 		 * %2$d is the number of the week within the year*/
-		$html .= sprintf(__("%1$d \n Week $d",DM_DOMAIN_NAME),
+		$html .= sprintf(__('%1$d <br/> Week %2$d',DM_DOMAIN_NAME),
 				$menus[0]->getDateTime()->format('o'),
 				$menus[0]->getDateTime()->format('W'));
 		$html .= "</th>";

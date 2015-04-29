@@ -33,6 +33,8 @@ do_settings_sections("dm_settings_group");
 
 echo "<h3>".__("Shortcode styles",DM_DOMAIN_NAME)."</h3>";
 
+echo "<p>".sprintf(__("Select the css stylesheet that will be applied when printing daily-menus (through the %s shortcode).",DM_DOMAIN_NAME),"[dm_menu period=week]")."</p>";
+
 $dirs = ListThemes::getAvailableThemes();
 if ($dirs) {
 	echo "<select name=\"".ListThemes::getOptionId()."\">";
@@ -49,6 +51,8 @@ if ($dirs) {
 }
 
 echo "<h3>".__("Admin menu styles",DM_DOMAIN_NAME)."</h3>";
+
+echo "<p>".__("Select the css stylesheets for the tables in the administration menus (popups and table).",DM_DOMAIN_NAME)."</p>";
 
 $dirs = ListAdminThemes::getAvailableJQueryUiThemes();
 
