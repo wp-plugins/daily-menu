@@ -54,6 +54,8 @@ echo "<h3>".__("Admin menu styles",DM_DOMAIN_NAME)."</h3>";
 
 echo "<p>".__("Select the css stylesheets for the tables in the administration menus (popups and table).",DM_DOMAIN_NAME)."</p>";
 
+echo "<p>".__("Popups (jQueryUI) : ");
+
 $dirs = ListAdminThemes::getAvailableJQueryUiThemes();
 
 echo "<select name=\"".ListAdminThemes::getJQueryUiOptionId()."\">";
@@ -66,6 +68,10 @@ foreach ($dirs as $dir) {
 }
 echo "</select>";
 
+echo "</p>";
+
+echo "<p>".__("Table (jTable) : ");
+
 $dirs = ListAdminThemes::getAvailableJTableThemes();
 
 echo "<select name=\"".ListAdminThemes::getJTableOptionId()."\">";
@@ -77,6 +83,8 @@ foreach ($dirs as $dir) {
 	echo "<option value=\"".$dir."\" ".$selected.">".$dir."</option>";
 }
 echo "</select>";
+
+echo "</p>";
 
 echo submit_button();
 
