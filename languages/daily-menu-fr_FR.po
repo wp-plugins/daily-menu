@@ -2,14 +2,15 @@
 # This file is distributed under the same license as the Daily Menu package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Daily Menu 0.2\n"
+"Project-Id-Version: Daily Menu 0.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/daily-menu\n"
-"POT-Creation-Date: 2015-02-27 22:40:14+00:00\n"
+"POT-Creation-Date: 2015-05-05 10:26:01+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Laurent Morretton <laurent.morretton@gmail.com>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: controllers/DishTableControlFunctions.php:29
 #: controllers/DishTableControlFunctions.php:47
@@ -20,7 +21,7 @@ msgstr "Impossible d'enregistrer le plat"
 msgid "Unable to delete the dish"
 msgstr "Impossible de supprimer le plat"
 
-#: controllers/InstallController.php:62 index.php:157
+#: controllers/InstallController.php:62 index.php:153
 msgid "Starter"
 msgstr "Entrée"
 
@@ -28,15 +29,15 @@ msgstr "Entrée"
 msgid "Main course"
 msgstr "Plat principal"
 
-#: controllers/InstallController.php:64 index.php:159
+#: controllers/InstallController.php:64 index.php:155
 msgid "Accompaniment"
 msgstr "Accompagnement"
 
-#: controllers/InstallController.php:65 index.php:160
+#: controllers/InstallController.php:65 index.php:156
 msgid "Dairy"
 msgstr "Produits laitiers"
 
-#: controllers/InstallController.php:66 index.php:161
+#: controllers/InstallController.php:66 index.php:157
 msgid "Dessert"
 msgstr "Dessert"
 
@@ -100,13 +101,20 @@ msgstr "Gratin"
 msgid "No dish"
 msgstr "Aucun plat"
 
-#: controllers/ListMenus.php:179
-msgid "No menu this week !"
-msgstr "Aucun menu cette semaine !"
+#: controllers/ListMenus.php:182
+msgid "No menu set yet !"
+msgstr "Encore aucun menu défini !"
 
-#: controllers/ListMenus.php:186
-msgid "Day"
-msgstr "Jour"
+#. translators: %1$d is the year %2$d is the number of the week within the year
+#: controllers/ListMenus.php:197
+msgid "%1$d <br/> Week %2$d"
+msgstr "%1$d <br/> Semaine %2$d"
+
+#. translators: %1$s is the name of the day, %2$d is the number of the day
+#. within month %3$s is the name of the month
+#: controllers/ListMenus.php:208
+msgid "%1$s, %2$d of %3$s"
+msgstr "Menu du %1$s %2$d %3$s"
 
 #: controllers/MenuTableControlFunctions.php:26
 #: controllers/MenuTableControlFunctions.php:55
@@ -139,87 +147,87 @@ msgstr "Impossible d'enregistrer le sous-type"
 msgid "Unable to delete the sub-type"
 msgstr "Impossible de supprimer le sous-type"
 
-#: index.php:66 index.php:74 index.php:82
+#: index.php:69 index.php:77 index.php:85
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Vous n'avez pas d'autorisations suffisantes pour accéder à cette page."
 
-#: index.php:91
+#: index.php:94
 msgid "Daily menu"
 msgstr "Menu du jour"
 
-#: index.php:92 view/ManageSettings.php:36
+#: index.php:95 view/ManageSettings.php:101
 msgid "Dishes"
 msgstr "Plats"
 
-#: index.php:93
+#: index.php:96
 msgid "Options"
 msgstr "Options"
 
-#: index.php:140
+#: index.php:136
 msgid "Dishes list"
 msgstr "Liste des plats"
 
-#: index.php:141
+#: index.php:137
 msgid "Name"
 msgstr "Nom"
 
-#: index.php:142
+#: index.php:138
 msgid "Composition"
 msgstr "Composition"
 
-#: index.php:143
+#: index.php:139
 msgid "Type"
 msgstr "Type"
 
-#: index.php:144
+#: index.php:140
 msgid "Subtype"
 msgstr "Sous-type"
 
-#: index.php:145
+#: index.php:141
 msgid "Picture"
 msgstr "Image"
 
-#: index.php:146
+#: index.php:142
 msgid "Select a picture"
 msgstr "Sélectionnez une image"
 
-#: index.php:154
+#: index.php:150
 msgid "Menus list"
 msgstr "Liste des menus"
 
-#: index.php:155
+#: index.php:151
 msgid "yy-mm-dd"
-msgstr "yy-mm-dd"
+msgstr "dd/mm/yy"
 
-#: index.php:156
+#: index.php:152
 msgid "Date"
 msgstr "Date"
 
-#: index.php:158
+#: index.php:154
 msgid "Main Course"
 msgstr "Plat principal"
 
-#: index.php:169
+#: index.php:165
 msgid "Type and sub-types of dish"
 msgstr "Type et sous-types de plat"
 
-#: index.php:170
+#: index.php:166
 msgid "Type of dish"
 msgstr "Type de plat"
 
-#: index.php:171
+#: index.php:167
 msgid "Edit sub-types"
-msgstr "Modifier sous-types"
+msgstr "Modifier les sous-types"
 
-#: index.php:172
+#: index.php:168
 msgid "Sub-types"
 msgstr "Sous-types"
 
-#: index.php:173
+#: index.php:169
 msgid "Subtype of dish"
 msgstr "Sous-type de plat"
 
-#: index.php:174
+#: index.php:170
 msgid "ID"
 msgstr "Code"
 
@@ -227,11 +235,11 @@ msgstr "Code"
 msgid "A error occurs"
 msgstr "Une erreur s'est produite"
 
-#: models/Menu.php:103 models/Menu.php:111
+#: models/Menu.php:103 models/Menu.php:118
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
-#. #-#-#-#-#  daily-menu.pot (Daily Menu 0.2)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Daily Menu 0.3)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: view/DailyMenuWidget.php:14
 msgid "Daily Menu"
@@ -241,10 +249,8 @@ msgstr "Menu du jour"
 msgid "Daily Menu Widget shows the menu of the day"
 msgstr "Le widget Daily-Menu affiche le menu du jour"
 
-#. translators:
-#. 		 * %1$s is the name of the day,
-#. 		 * %2$d is the number of the day within month
-#. 		 * %3$s is the name of the month
+#. translators: %1$s is the name of the day, %2$d is the number of the day
+#. within month %3$s is the name of the month
 #: view/DailyMenuWidget.php:45
 msgid "Menu of %1$s, %2$d of %3$s"
 msgstr "Menu du %1$s %2$d %3$s"
@@ -267,42 +273,74 @@ msgstr "Options générales"
 
 #: view/ManageSettings.php:22
 msgid "Manage sub-types of dish"
-msgstr "Gestion des sous-types de plat"
+msgstr "Gérer les sous-types de plat"
 
 #: view/ManageSettings.php:28
+msgid "Styles"
+msgstr "Styles"
+
+#: view/ManageSettings.php:34
+msgid "Shortcode styles"
+msgstr "Styles du SHORTCODE"
+
+#: view/ManageSettings.php:36
+msgid ""
+"Select the css stylesheet that will be applied when printing daily-menus "
+"(through the %s shortcode)."
+msgstr "Sélectionnez la feuille de style CSS qui sera appliqué lors à l'affichage des menus (via le shortcode %s)."
+
+#: view/ManageSettings.php:53
+msgid "Admin menu styles"
+msgstr "Style des menus d'administration"
+
+#: view/ManageSettings.php:55
+msgid ""
+"Select the css stylesheets for the tables in the administration menus "
+"(popups and table)."
+msgstr "Sélectionnez les feuilles de style CSS pour les tables dans les menus d'administration (pour les popups et les tables)."
+
+#: view/ManageSettings.php:57
+msgid "Popups (jQueryUI) : "
+msgstr "Popups (jQueryUI) : "
+
+#: view/ManageSettings.php:73
+msgid "Table (jTable) : "
+msgstr "Tableau (JTable) : "
+
+#: view/ManageSettings.php:93
 msgid "Instructions for use"
 msgstr "Utilisation"
 
-#. #-#-#-#-#  daily-menu.pot (Daily Menu 0.2)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Daily Menu 0.3)  #-#-#-#-#
 #. Description of the plugin/theme
-#: view/ManageSettings.php:30
+#: view/ManageSettings.php:95
 msgid "Daily menu provides facilities for canteen management."
 msgstr "Daily-menu permet de gérer un menu de cantine au jour le jour"
 
-#: view/ManageSettings.php:33
+#: view/ManageSettings.php:98
 msgid ""
 "In the \"%s\" menu, create several dishes that you will use later\n"
 "\t\t\t\tto compose your daily menu. Once this step is done, create\n"
 "\t\t\t\tday-to-day menus via \"%s\""
 msgstr "Dans le menu \"%s\", créez plusieurs plats que vous utiliserez plus tard pour composer vos menus quotidiens. Une fois cette étape effectuée, vous pouvez créez vos menus via \"%s\""
 
-#: view/ManageSettings.php:37
+#: view/ManageSettings.php:102
 msgid "Menus"
 msgstr "Menus"
 
-#: view/ManageSettings.php:39
+#: view/ManageSettings.php:104
 msgid ""
 "Insert the following shortcode\n"
 "\t\t\t\tto dynamically show the menus of the week : %s."
-msgstr "Insérer le shortcode suivant pour afficher dynamiquement les menus de la semaine : %s ."
+msgstr "Insérer le shortcode suivant pour afficher dynamiquement les menus de la semaine : %s."
 
-#: view/ManageSettings.php:43
+#: view/ManageSettings.php:108
 msgid ""
 "You can add a widget on your slide bar with the menu of the day,\n"
 "\t\tor the coming next menu, if it is 4 PM or after."
 msgstr "Vous pouvez ajouter un widget sur votre barre latérale avec le menu du jour, ou le menu à venir, s'il est plus de 16 heures."
 
-#: view/ManageSettings.php:46
+#: view/ManageSettings.php:111
 msgid "This plugin uses jTable (http://www.jtable.org/)."
 msgstr "Ce plugin utilise JTable (http://www.jtable.org/)."
 
